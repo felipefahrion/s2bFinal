@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesgrudaCoisa.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace DesgrudaCoisa.Controllers
 {
     public class HomeController : Controller
     {
+        private MapeamentoEntidadesContext db = new MapeamentoEntidadesContext();
+
         public ActionResult Index()
         {
             return View();

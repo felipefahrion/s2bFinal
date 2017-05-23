@@ -7,7 +7,7 @@ namespace DesgrudaCoisa.Models
 {
     public class Categoria
     {
-        public int IdCategoria { get; set; }
+        public int CategoriaID { get; set; }
         public string TituloCategoria { get; set; }
         public string Descricao { get; set; }
 

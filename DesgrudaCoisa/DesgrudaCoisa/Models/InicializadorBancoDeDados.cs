@@ -28,13 +28,13 @@ namespace DesgrudaCoisa.Models
                     TituloAnuncio = "Mouse",
                     Valor = 10,
                     DataPublicacao = DateTime.Parse("1/11/1989",new CultureInfo("en-US")),
-                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").IdCategoria,
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
                 },
                 new Anuncio {
                     TituloAnuncio = "Shampo anti careca",
                     Valor = 20,
                     DataPublicacao = DateTime.Parse("1/11/2002",new CultureInfo("en-US")),
-                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").IdCategoria,
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
                 },
              };
             anuncios.ForEach(s => context.Anuncios.Add(s));
