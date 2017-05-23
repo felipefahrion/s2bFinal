@@ -243,7 +243,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Anuncio\Create.cshtml" />
-    <Content Include="Views\Anuncio\Delete.cshtml" />
+    <Content Include="Views\Anuncio\Details.cshtml" />
     <Content Include="Views\Anuncio\Edit.cshtml" />
     <Content Include="Views\Anuncio\Index.cshtml" />
   </ItemGroup>
