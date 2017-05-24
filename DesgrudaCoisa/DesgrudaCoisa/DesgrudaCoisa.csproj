@@ -246,6 +246,7 @@
     <Content Include="Views\Anuncio\Details.cshtml" />
     <Content Include="Views\Anuncio\Edit.cshtml" />
     <Content Include="Views\Anuncio\Index.cshtml" />
+    <Content Include="Views\Anuncio\ListSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
