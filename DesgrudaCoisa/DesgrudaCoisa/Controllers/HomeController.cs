@@ -1,9 +1,7 @@
 ﻿using DesgrudaCoisa.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using System.Linq;
 
 namespace DesgrudaCoisa.Controllers
 {
@@ -13,7 +11,8 @@ namespace DesgrudaCoisa.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var anuncios = this.db.Anuncios.Include(a => a.Categoria).Take(10).ToList();
+            return View(anuncios);
         }
 
         public ActionResult About()
