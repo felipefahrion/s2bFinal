@@ -1,20 +1,19 @@
 ﻿@model IEnumerable<DesgrudaCoisa.Models.Anuncio>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Página Inicial";
 }
 <link href="~/SiteView/CSS/HomeListAnuncio.css" rel="stylesheet" type="text/css" />
 
 <div class="jumbotron">
     <div class="container text-center">
-        <h1>Online Store</h1>
-        <p>Mission, Vission & Values</p>
+        <h1>Loja Desgruda Algo</h1>
+        <p>Ajude e se ajude</p>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
-        <h2>Ecommerce Products Display Layout</h2>
-
-
+        <h2>Anúncios adicionados recentemente</h2>
         @foreach (var item in Model)
         {
             <div class="col-sm-3">
@@ -31,9 +30,9 @@
                         <div class="row">
                             <div class="price-details col-md-6">
                                 <p class="details">
-                                    @Html.DisplayFor(modelItem => item.TituloAnuncio)
+                                    @Html.DisplayFor(modelItem => item.Categoria.Descricao)
                                 </p>
-                                <h1>Sample Product</h1>
+                                <h1>@Html.DisplayFor(modelItem => item.TituloAnuncio)</h1>
                                 <span class="price-new">R$@Html.DisplayFor(modelItem => item.Valor)</span>
                             </div>
                         </div>
