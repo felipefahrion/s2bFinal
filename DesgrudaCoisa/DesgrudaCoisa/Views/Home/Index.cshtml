@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </article>
-                <p class="text-center">Hover over image</p>
+                @Html.ActionLink("Entrar no anuncio", "Details", "Anuncio", new { id = item.ID }, new { @class = "btn btn-primary" })
             </div>
         }
     </div>
