@@ -18,6 +18,8 @@ namespace DesgrudaCoisa.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            //Colocar a missão de cunho social 
+            //Editar a View do About
 
             return View();
         }
@@ -25,6 +27,8 @@ namespace DesgrudaCoisa.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            //Colocar o contato da empresa
+            //Editar a view do Contact
 
             return View();
         }
