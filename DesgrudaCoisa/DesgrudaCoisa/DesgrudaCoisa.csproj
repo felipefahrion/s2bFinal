@@ -246,7 +246,8 @@
     <Content Include="Views\Anuncio\Create.cshtml" />
     <Content Include="Views\Anuncio\Details.cshtml" />
     <Content Include="Views\Anuncio\Edit.cshtml" />
-    <Content Include="Views\Anuncio\Index.cshtml" />
+    <Content Include="Views\Anuncio\ListAnuncios.cshtml" />
+    <Content Include="Views\Anuncio\ListMeusAnuncios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,16 +15,16 @@ namespace DesgrudaCoisa.Controllers
         private MapeamentoEntidadesContext db = new MapeamentoEntidadesContext();
 
         // GET: Anuncio
-        public ActionResult Index(string searchString)
+        public ActionResult ListAnuncios(string pesquisar)
         {
             var anuncios = db.Anuncios.Include(a => a.Categoria);
             
             //pode ser assim tambem
             //var movies = from anuncio in movieDb.Anuncios select anuncio;
 
-            if(!String.IsNullOrEmpty(searchString))
+            if(!String.IsNullOrEmpty(pesquisar))
             {
-                anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(searchString));
+                anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(pesquisar));
             }
             return View(anuncios.ToList());
         }
@@ -101,7 +101,21 @@ namespace DesgrudaCoisa.Controllers
             return View(anuncio);
         }
 
-        
+
+        public ActionResult ListMeusAnuncios(string searchString)
+        {
+            var anuncios = db.Anuncios.Include(a => a.Categoria);
+
+            //pode ser assim tambem
+            //var movies = from anuncio in movieDb.Anuncios select anuncio;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(searchString));
+            }
+            return View(anuncios.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
