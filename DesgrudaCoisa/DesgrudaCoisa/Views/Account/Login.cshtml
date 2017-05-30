@@ -4,10 +4,10 @@
     ViewBag.Title = "Login";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+@*<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Website CSS style -->
@@ -31,7 +31,7 @@
                     <form class="" method="post" action="#">
 
                         @* Login a partir de email e senha *@
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label for="email" class="cols-sm-2 control-label">E-mail</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
@@ -49,11 +49,11 @@
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         @* Botão Entrar *@
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Entrar" class="btn btn-primary btn-lg btn-block login-button" />
+                                <input type="submit" value="Entrar" class="btn btn-success btn-lg btn-block login-button" />
                             </div>
                         </div>
                     </form>
@@ -65,15 +65,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-</body>
+</body>*@
 
-@*<div class="row">
+<div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -110,7 +110,7 @@
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
-            @*}
+            }
         </section>
     </div>
     <div class="col-md-4">
@@ -122,4 +122,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+}

@@ -16,6 +16,7 @@ namespace DesgrudaCoisa.Models
             {
                 new Categoria { TituloCategoria = "Informatica",  Descricao = "Produtos Informatica"},
                 new Categoria { TituloCategoria = "Estetica",  Descricao = "Produtos de Beleza"},
+                new Categoria {TituloCategoria = "Academia", Descricao = "Produtos para Academia"},
 
              };
             categorias.ForEach(s => context.Categorias.Add(s));
@@ -35,6 +36,12 @@ namespace DesgrudaCoisa.Models
                     Valor = 20,
                     DataPublicacao = DateTime.Parse("1/11/2002",new CultureInfo("en-US")),
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
+                },
+                new Anuncio {
+                    TituloAnuncio = "Shaker",
+                    Valor = 50,
+                    DataPublicacao = DateTime.Parse("10/10/2017",new CultureInfo("en-US")),
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Academia").CategoriaID,
                 },
              };
             anuncios.ForEach(s => context.Anuncios.Add(s));
