@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnuncioController.cs" />
+    <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SiteView\CSS\CategoriaDropDownMenu.css" />
     <Content Include="SiteView\CSS\Contact.css" />
     <Content Include="SiteView\CSS\DetalhesAnuncio.css" />
     <Content Include="SiteView\CSS\HomeListAnuncio.css" />
@@ -256,6 +258,12 @@
     <Content Include="Views\Anuncio\Edit.cshtml" />
     <Content Include="Views\Anuncio\ListAnuncios.cshtml" />
     <Content Include="Views\Anuncio\ListMeusAnuncios.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\CategoriaDropDown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

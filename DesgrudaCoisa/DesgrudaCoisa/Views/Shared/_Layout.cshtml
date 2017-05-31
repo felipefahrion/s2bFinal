@@ -38,10 +38,10 @@
                     <li>@Html.ActionLink("Meus Anuncios", "ListMeusAnuncios", "Anuncio")</li>
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li>@{Html.RenderAction("CategoriaDropDown", "Categoria"); }</li>
                 </ul>
             </div>
         </div>
-@{Html.RenderAction("CategoriaDropDown", "CategoriaTeste"); }
     </div>
     <div class="container body-content">
         @RenderBody()
