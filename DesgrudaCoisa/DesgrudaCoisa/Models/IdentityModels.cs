@@ -21,7 +21,7 @@ namespace DesgrudaCoisa.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("InicializadorBD", throwIfV1Schema: false)
         {
         }
 
