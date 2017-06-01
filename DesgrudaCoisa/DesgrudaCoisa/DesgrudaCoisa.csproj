@@ -215,6 +215,7 @@
     <Content Include="SiteView\CSS\Contact.css" />
     <Content Include="SiteView\CSS\DetalhesAnuncio.css" />
     <Content Include="SiteView\CSS\HomeListAnuncio.css" />
+    <Content Include="SiteView\CSS\LayoutHome.css" />
     <Content Include="SiteView\CSS\LoginPage.css" />
     <Content Include="SiteView\CSS\SearchBar.css" />
     <Content Include="Web.config">
