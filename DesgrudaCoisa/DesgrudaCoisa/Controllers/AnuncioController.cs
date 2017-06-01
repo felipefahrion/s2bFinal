@@ -124,5 +124,12 @@ namespace DesgrudaCoisa.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Filtro()
+        {
+           return View();
+        }
+
+
     }
 }
