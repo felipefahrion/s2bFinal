@@ -179,11 +179,13 @@
     <Compile Include="Migrations\201706011928087_inicial.Designer.cs">
       <DependentUpon>201706011928087_inicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706021400188_Profile.cs" />
+    <Compile Include="Migrations\201706021400188_Profile.Designer.cs">
+      <DependentUpon>201706021400188_Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Anuncio.cs" />
-    <Compile Include="Models\AnuncioFAQ.cs" />
-    <Compile Include="Models\AnuncioImagem.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\EnumStatus.cs" />
     <Compile Include="Models\FAQ.cs" />
@@ -287,6 +289,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706011928087_inicial.resx">
       <DependentUpon>201706011928087_inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706021400188_Profile.resx">
+      <DependentUpon>201706021400188_Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -52,18 +52,14 @@
             <div class="col-sm-3">
                 <article class="col-item">
                     <div class="photo">
-                        <div class="options-cart-round">
-                            <button class="btn btn-default" title="Add to cart">
-                                <span class="fa fa-shopping-cart"></span>
-                            </button>
-                        </div>
-                        <a href="#"> <img src="https://unsplash.it/500/300?image=0" class="img-responsive" alt="Product Image" /> </a>
+                        @*<a href="#"> <img src="https://unsplash.it/500/300?image=0" class="img-responsive" alt="Product Image" /> </a>*@
+                        <img width="200" src="@Url.Action("GetImage", "Anuncio", new {id=item.ID})" />
                     </div>
                     <div class="info">
                         <div class="row">
                             <div class="price-details col-md-6">
                                 <p class="details">
-                                    @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+                                    @Html.DisplayFor(modelItem => item.Descricao)
                                 </p>
                                 <h1>@Html.DisplayFor(modelItem => item.TituloAnuncio)</h1>
                                 <span class="price-new">R$@Html.DisplayFor(modelItem => item.Valor)</span>

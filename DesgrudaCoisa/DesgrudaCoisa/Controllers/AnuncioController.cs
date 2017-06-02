@@ -116,6 +116,19 @@ namespace DesgrudaCoisa.Controllers
             return View(anuncios.ToList());
         }
 
+        public ActionResult GetImage(int id)
+        {
+            Anuncio anuncio = db.Anuncios.Find(id);
+            if (anuncio != null && anuncio.Imagem.ImageFile != null)
+            {
+                return File(anuncio.Imagem.ImageFile, anuncio.Imagem.ImageMimeType);
+            }
+            else
+            {
+                return new FilePathResult("~/Images/1.jpg","image/jpeg");
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
