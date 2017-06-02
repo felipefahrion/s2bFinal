@@ -346,3 +346,6 @@ C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCois
 C:\Users\16105004.PORTOALEGRE\Desktop\456\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.Migrations.inicial.resources
 C:\Users\16105004.PORTOALEGRE\Desktop\456\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.csproj.GenerateResource.Cache
 C:\Users\16105004.PORTOALEGRE\Desktop\456\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.Migrations.Profile.resources
+C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.Migrations.inicial.resources
+C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.Migrations.Profile.resources
+C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.csproj.GenerateResource.Cache
