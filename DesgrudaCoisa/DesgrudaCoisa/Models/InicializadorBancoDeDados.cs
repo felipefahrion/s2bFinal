@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace DesgrudaCoisa.Models
 {
-    public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseIfModelChanges<MapeamentoEntidadesContext>
-    //public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseAlways<MapeamentoEntidadesContext>
+    //public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseIfModelChanges<MapeamentoEntidadesContext>
+    public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseAlways<MapeamentoEntidadesContext>
     {
         protected override void Seed(MapeamentoEntidadesContext context)
         {
@@ -23,15 +24,16 @@ namespace DesgrudaCoisa.Models
             context.SaveChanges();
 
 
-            //var imagens = new List<Imagem>
-            //{
-            //    new Imagem {Caminho = "Images/1.png"},
-            //    new Imagem {Caminho = "Images/2.png"},
+            string byteString = "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+            byte[] byteArray = Encoding.ASCII.GetBytes(byteString);
 
-            // };
+            var imagens = new List<Imagem>
+            {
+                new Imagem {ImageFile = byteArray, ImageMimeType = "image/jpeg"},
+             };
 
-            //imagens.ForEach(s => context.Imagens.Add(s));
-            //context.SaveChanges();
+            imagens.ForEach(s => context.Imagens.Add(s));
+            context.SaveChanges();
 
             var enumStatus = new List<EnumStatus>
             {
@@ -50,7 +52,7 @@ namespace DesgrudaCoisa.Models
                     Valor = 10,
                     Descricao = "Mouse de Computador",
                     EnumStatusID = enumStatus.Single( g => g.Descricao == "Vendido").EnumStatusID,
-                    //ImagemID = imagens.Single( g => g.Caminho == "Images/1.png").ImagemID,
+                    ImagemID = 1,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
                     VendedorEmail = "admin@mvc.br",
                 },

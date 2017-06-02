@@ -53,21 +53,48 @@ namespace DesgrudaCoisa.Controllers
         // POST: Anuncio/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Anuncios.Add(anuncio);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
+        //    return View(anuncio);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID")] Anuncio anuncio)
+        public ActionResult Create(String tituloAnuncio, String descricao, decimal valor, int categoriaID, HttpPostedFileBase image)
         {
+            Imagem imagem = new Imagem { ImageFile = new byte[image.ContentLength], ImageMimeType = image.ContentType};
+            db.Imagens.Add(imagem);
+            db.SaveChanges();
+            Anuncio anuncio = new Anuncio
+            {
+                TituloAnuncio = tituloAnuncio,
+                Valor = valor,
+                Descricao = descricao,
+                EnumStatusID = 1,
+                ImagemID = imagem.ImagemID,
+                CategoriaID = categoriaID,
+                VendedorEmail = "admin@mvc.br",
+            };
             if (ModelState.IsValid)
             {
                 db.Anuncios.Add(anuncio);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListAnuncios");
             }
 
             ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
             return View(anuncio);
         }
-
         // GET: Anuncio/Edit/5
         public ActionResult Edit(int? id)
         {
