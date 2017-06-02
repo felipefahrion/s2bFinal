@@ -18,11 +18,11 @@ namespace DesgrudaCoisa.Controllers
         public ActionResult ListAnuncios(string pesquisar)
         {
             var anuncios = db.Anuncios.Include(a => a.Categoria);
-            
+
             //pode ser assim tambem
             //var movies = from anuncio in movieDb.Anuncios select anuncio;
 
-            if(!String.IsNullOrEmpty(pesquisar))
+            if (!String.IsNullOrEmpty(pesquisar))
             {
                 anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(pesquisar));
             }
@@ -125,7 +125,7 @@ namespace DesgrudaCoisa.Controllers
             }
             else
             {
-                return new FilePathResult("~/Images/1.jpg","image/jpeg");
+                return new FilePathResult("~/Images/1.jpg", "image/jpeg");
             }
         }
 
@@ -140,22 +140,20 @@ namespace DesgrudaCoisa.Controllers
 
         public ActionResult Filtro()
         {
-           return View();
+            return View();
         }
 
-        //public ActionResult FiltroAvancado(string produto, string preco)
-        //{
-        //    var anuncios = db.Anuncios.Include(a => a.Categoria);
+        // POST: Anuncio/FiltroAvancado
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FiltroAvancado([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
+        {
+            ViewBag.ID = new SelectList(db.Anuncios, "ID", "TituloAununcio");
+            return View();
+            //return RedirectToAction("Index");
+        }
 
-        //    //pode ser assim tambem
-        //    //var movies = from anuncio in movieDb.Anuncios select anuncio;
 
-        //    if (!String.IsNullOrEmpty(produto) || !String.IsNullOrEmpty(preco))
-        //    {
-        //        anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(produto));
-        //        anuncios = anuncios.Where(s => s.Valor.Contains(preco));
-        //    }
-        //    return View(anuncios.ToList());
-        //}
+
     }
 }

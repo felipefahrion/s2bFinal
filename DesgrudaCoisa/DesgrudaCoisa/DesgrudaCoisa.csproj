@@ -273,6 +273,7 @@
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\CategoriaDropDown.cshtml" />
     <Content Include="Views\Anuncio\Filtro.cshtml" />
+    <Content Include="Views\Anuncio\FiltroAvancado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
