@@ -173,14 +173,13 @@ namespace DesgrudaCoisa.Controllers
         // POST: Anuncio/FiltroAvancado
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FiltroAvancado([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
+        public ActionResult PesquisarFiltro([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
         {
+            //metodo de seleçao 
+            //consultar no banco a partir dos inputs  
             ViewBag.ID = new SelectList(db.Anuncios, "ID", "TituloAununcio");
             return View();
             //return RedirectToAction("Index");
         }
-
-
-
     }
 }
