@@ -343,3 +343,5 @@ C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\bin\Microsoft.Owin.Sec
 C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.csprojResolveAssemblyReference.cache
 C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.dll
 C:\Users\16105004\Desktop\s2b\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.pdb
+C:\Users\16105004.PORTOALEGRE\Desktop\456\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.Migrations.inicial.resources
+C:\Users\16105004.PORTOALEGRE\Desktop\456\DesgrudaCoisa\DesgrudaCoisa\obj\Debug\DesgrudaCoisa.csproj.GenerateResource.Cache

@@ -1,54 +1,39 @@
 ﻿<form class="form-horizontal">
     <fieldset>
         <!-- Form Name -->
-        <legend>Zur Person</legend>
-        <!-- Text input-->
+        <legend>Filtrar pesquisa</legend>
+
+        <!-- Pesquisa por nome -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="name">Name</label>
+            <label class="col-md-4 control-label">Produto</label>
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
+                <input id="name" name="produto" type="text" placeholder="Nome do produto" class="form-control input-md" required="">
 
             </div>
         </div>
-        <!-- Text input-->
+        <!-- pesquisa por Preço -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="vorname">Vorname</label>
+            <label class="col-md-4 control-label">Preço</label>
             <div class="col-md-4">
-                <input id="vorname" name="vorname" type="text" placeholder="Vorname" class="form-control input-md" required="">
+                <input id="vorname" name="preco" type="number" placeholder="Preço do produto" class="form-control input-md" required="">
 
             </div>
         </div>
-        <!-- Text input-->
-        <div class="form-group">
+        <!-- tentar a pesquisa num DropDown -->
+        @*<div class="form-group">
             <label class="col-md-4 control-label" for="gebdatum">Geburtsdatum</label>
             <div class="col-md-4">
                 <input id="gebdatum" name="gebdatum" type="text" placeholder="geburtsdatum" class="form-control input-md" required="">
 
             </div>
-        </div>
-        <!-- Text input-->
+        </div>*@
+        
+        <!-- Botão (Search) -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="anschrift">Anschrift</label>
-            <div class="col-md-6">
-                <input id="anschrift" name="anschrift" type="text" placeholder="Anschrift" class="form-control input-md" required="">
-
-            </div>
-        </div>
-        <!-- Textarea -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="anschrift">Anschrift</label>
-            <div class="col-md-4">
-                <textarea class="form-control" id="anschrift" name="anschrift">Anschrift</textarea>
-            </div>
-        </div>
-        <!-- Button (Double) -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="anmelden"></label>
+            <label class="col-md-4 control-label"></label>
             <div class="col-md-8">
-                <button id="anmelden" name="anmelden" class="btn btn-success">Anmelden</button>
-                <button id="reset" name="reset" class="btn btn-danger">Reset</button>
+                @Html.ActionLink("Pesquisar", "Filtro", "Anuncio", new { @class = "btn btn-warning" })
             </div>
         </div>
     </fieldset>
 </form>
-

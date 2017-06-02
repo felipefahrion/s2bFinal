@@ -130,6 +130,19 @@ namespace DesgrudaCoisa.Controllers
            return View();
         }
 
+        //public ActionResult FiltroAvancado(string produto, string preco)
+        //{
+        //    var anuncios = db.Anuncios.Include(a => a.Categoria);
 
+        //    //pode ser assim tambem
+        //    //var movies = from anuncio in movieDb.Anuncios select anuncio;
+
+        //    if (!String.IsNullOrEmpty(produto) || !String.IsNullOrEmpty(preco))
+        //    {
+        //        anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(produto));
+        //        anuncios = anuncios.Where(s => s.Valor.Contains(preco));
+        //    }
+        //    return View(anuncios.ToList());
+        //}
     }
 }
