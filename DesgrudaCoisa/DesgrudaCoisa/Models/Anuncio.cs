@@ -10,8 +10,11 @@ namespace DesgrudaCoisa.Models
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name = "Título do Anúncio")]
         public string TituloAnuncio { get; set; }
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+        [Display(Name = "Preço")]
         public decimal Valor { get; set; }
         [Required]
         public string VendedorEmail { get; set; }

@@ -23,13 +23,12 @@ namespace DesgrudaCoisa.Models
             categorias.ForEach(s => context.Categorias.Add(s));
             context.SaveChanges();
 
-
-            string byteString = "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-            byte[] byteArray = Encoding.ASCII.GetBytes(byteString);
-
             var imagens = new List<Imagem>
             {
-                new Imagem {ImageFile = byteArray, ImageMimeType = "image/jpeg"},
+                new Imagem {ImageUrl = "/Images/mouse.jpg"},
+                new Imagem {ImageUrl = "/Images/livro.jpg"},
+                new Imagem {ImageUrl = "/Images/halteres.jpg"},
+                new Imagem {ImageUrl = "/Images/crememassagem.jpg"},
              };
 
             imagens.ForEach(s => context.Imagens.Add(s));
@@ -39,6 +38,8 @@ namespace DesgrudaCoisa.Models
             {
                 new EnumStatus {Descricao = "Vendido"},
                 new EnumStatus {Descricao= "Em negociacao"},
+                new EnumStatus {Descricao= "Expirado"},
+                new EnumStatus {Descricao= "Disponivel"},
 
              };
 
@@ -50,22 +51,39 @@ namespace DesgrudaCoisa.Models
                 new Anuncio {
                     TituloAnuncio = "Mouse",
                     Valor = 10,
-                    Descricao = "Mouse de Computador",
-                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Vendido").EnumStatusID,
-                    ImagemID = 1,
+                    Descricao = "Mouse wireless de Computador com entrada USB 2.0",
+                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    ImagemID = imagens.Single( g => g.ImageUrl == "/Images/mouse.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
                     VendedorEmail = "admin@mvc.br",
                 },
-                //new Anuncio {
-                //    TituloAnuncio = "Shampo anti careca",
-                //    Valor = 20,
-                //    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
-                //},
-                //new Anuncio {
-                //    TituloAnuncio = "Shaker",
-                //    Valor = 50,
-                //    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Academia").CategoriaID,
-                //},
+                new Anuncio {
+                    TituloAnuncio = "Livro Steve Jobs",
+                    Valor = 20,
+                    Descricao = "A Cabeça de Steve Jobs é um livro de Marcio Edson Tavares, lançado em 2010, que retrata aspectos da vida e personalidade de Steve Jobs. Conforme sinopse da Livraria Cultura, o livro é, ao mesmo tempo, uma biografia e um guia sobre liderança.",
+                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    ImagemID = imagens.Single( g => g.ImageUrl == "/Images/livro.jpg").ImagemID,
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
+                    VendedorEmail = "admin@mvc.br",
+                },
+                new Anuncio {
+                    TituloAnuncio = "Creme de massagem drenante",
+                    Valor = 30,
+                    Descricao = "Creme de massagem desenvolvido para auxiliar na ativação do sistema linfático, este creme com óleo de pimenta negra, termogênico de origem natural, é indicado para massagens modeladoras.",
+                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    ImagemID = imagens.Single( g => g.ImageUrl == "/Images/crememassagem.jpg").ImagemID,
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
+                    VendedorEmail = "admin@mvc.br",
+                },
+                new Anuncio {
+                    TituloAnuncio = "Halteres 20 kg",
+                    Valor = 40,
+                    Descricao = "2 (dois) Halteres, bem cuidados da marca Phonex. Com um ano de garantia",
+                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    ImagemID = imagens.Single( g => g.ImageUrl == "/Images/halteres.jpg").ImagemID,
+                    CategoriaID =  categorias.Single( g => g.TituloCategoria == "Academia").CategoriaID,
+                    VendedorEmail = "admin@mvc.br",
+                },
              };
             anuncios.ForEach(s => context.Anuncios.Add(s));
             context.SaveChanges();

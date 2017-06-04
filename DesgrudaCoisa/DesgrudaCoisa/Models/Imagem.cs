@@ -13,6 +13,8 @@ namespace DesgrudaCoisa.Models
 
         [Display(Name = "Upload image")]
         public byte[] ImageFile { get; set; }
-        public string ImageMimeType { get; set; }        public virtual ICollection<Anuncio> Anuncios { get; set; }
+        public string ImageMimeType { get; set; }        [Display(Name = "Image link")]
+        [DataType(DataType.ImageUrl)]
+        public String ImageUrl { get; set; }        public virtual ICollection<Anuncio> Anuncios { get; set; }
     }
 }

@@ -73,6 +73,7 @@ namespace DesgrudaCoisa.Controllers
         public ActionResult Create(String tituloAnuncio, String descricao, decimal valor, int categoriaID, HttpPostedFileBase image)
         {
             Imagem imagem = new Imagem { ImageFile = new byte[image.ContentLength], ImageMimeType = image.ContentType};
+            image.InputStream.Read(imagem.ImageFile, 0, image.ContentLength);
             db.Imagens.Add(imagem);
             db.SaveChanges();
             Anuncio anuncio = new Anuncio

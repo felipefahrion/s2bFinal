@@ -52,8 +52,14 @@
             <div class="col-sm-3">
                 <article class="col-item">
                     <div class="photo">
-                        @*<a href="#"> <img src="https://unsplash.it/500/300?image=0" class="img-responsive" alt="Product Image" /> </a>*@
-                        <img width="200" src="@Url.Action("GetImage", "Anuncio", new {id=item.ID})" />
+                        @if (item.Imagem.ImageUrl != null)
+                        {
+                            <a><img width="200" src="@item.Imagem.ImageUrl" alt=@item.TituloAnuncio class="img-responsive" /></a>
+                        }
+                        else
+                        {
+                            <a><img width="200" class="img-responsive" src="@Url.Action("GetImage", "Anuncio", new { id = item.ID})" /></a>
+                        }
                     </div>
                     <div class="info">
                         <div class="row">
@@ -61,7 +67,7 @@
                                 <p class="details">
                                     @Html.DisplayFor(modelItem => item.Descricao)
                                 </p>
-                                <h1>@Html.DisplayFor(modelItem => item.TituloAnuncio)</h1>
+                                <h1><b>@Html.DisplayFor(modelItem => item.TituloAnuncio)</b></h1>
                                 <span class="price-new">R$@Html.DisplayFor(modelItem => item.Valor)</span>
                             </div>
                         </div>
