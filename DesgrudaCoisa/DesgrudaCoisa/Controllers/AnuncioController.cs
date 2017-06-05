@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DesgrudaCoisa.Models;
+using Microsoft.AspNet.Identity;
 
 namespace DesgrudaCoisa.Controllers
 {
@@ -182,7 +183,11 @@ namespace DesgrudaCoisa.Controllers
 
             string anuncioTitulo = anuncio.TituloAnuncio;
             var status = db.StatusAnuncio.Where(x => x.Descricao == "Em negociacao").First();
-            anuncio.StatusID = status.StatusID;
+            if (Request.IsAuthenticated)
+            {
+                anuncio.CompradorEmail = User.Identity.GetUserName();
+            }
+                anuncio.StatusID = status.StatusID;
 
             db.Entry(anuncio).State = EntityState.Modified;
             db.SaveChanges();
