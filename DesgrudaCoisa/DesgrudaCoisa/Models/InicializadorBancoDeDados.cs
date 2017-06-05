@@ -34,16 +34,18 @@ namespace DesgrudaCoisa.Models
             imagens.ForEach(s => context.Imagens.Add(s));
             context.SaveChanges();
 
-            var enumStatus = new List<EnumStatus>
+            var statusAnuncio = new List<StatusAnuncio>
             {
-                new EnumStatus {Descricao = "Vendido"},
-                new EnumStatus {Descricao= "Em negociacao"},
-                new EnumStatus {Descricao= "Expirado"},
-                new EnumStatus {Descricao= "Disponivel"},
+                new StatusAnuncio {Descricao = "Vendido"},
+                new StatusAnuncio {Descricao= "Em negociacao"},
+                new StatusAnuncio {Descricao= "Desistencia de venda"},
+                new StatusAnuncio {Descricao= "Disponivel"},
+                new StatusAnuncio {Descricao= "Doado"},
+                new StatusAnuncio {Descricao= "Bloqueado"},
 
              };
 
-            enumStatus.ForEach(s => context.EnumStatus.Add(s));
+            statusAnuncio.ForEach(s => context.StatusAnuncio.Add(s));
             context.SaveChanges();
 
             var anuncios = new List<Anuncio>
@@ -52,36 +54,40 @@ namespace DesgrudaCoisa.Models
                     TituloAnuncio = "Mouse",
                     Valor = 10,
                     Descricao = "Mouse wireless de Computador com entrada USB 2.0",
-                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    StatusID = statusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/mouse.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
+                    DataPublicacao = DateTime.Parse("1986-2-23"),
                     VendedorEmail = "admin@mvc.br",
                 },
                 new Anuncio {
                     TituloAnuncio = "Livro Steve Jobs",
                     Valor = 20,
                     Descricao = "A Cabeça de Steve Jobs é um livro de Marcio Edson Tavares, lançado em 2010, que retrata aspectos da vida e personalidade de Steve Jobs. Conforme sinopse da Livraria Cultura, o livro é, ao mesmo tempo, uma biografia e um guia sobre liderança.",
-                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    StatusID = statusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/livro.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
+                    DataPublicacao = DateTime.Parse("1986-2-23"),
                     VendedorEmail = "admin@mvc.br",
                 },
                 new Anuncio {
                     TituloAnuncio = "Creme de massagem drenante",
                     Valor = 30,
                     Descricao = "Creme de massagem desenvolvido para auxiliar na ativação do sistema linfático, este creme com óleo de pimenta negra, termogênico de origem natural, é indicado para massagens modeladoras.",
-                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    StatusID = statusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/crememassagem.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
+                    DataPublicacao = DateTime.Parse("1986-2-23"),
                     VendedorEmail = "admin@mvc.br",
                 },
                 new Anuncio {
                     TituloAnuncio = "Halteres 20 kg",
                     Valor = 40,
                     Descricao = "2 (dois) Halteres, bem cuidados da marca Phonex. Com um ano de garantia",
-                    EnumStatusID = enumStatus.Single( g => g.Descricao == "Disponivel").EnumStatusID,
+                    StatusID = statusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/halteres.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Academia").CategoriaID,
+                    DataPublicacao = DateTime.Parse("1986-2-23"),
                     VendedorEmail = "admin@mvc.br",
                 },
              };

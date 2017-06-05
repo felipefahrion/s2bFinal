@@ -53,20 +53,20 @@ namespace DesgrudaCoisa.Controllers
         // POST: Anuncio/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Anuncios.Add(anuncio);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Anuncios.Add(anuncio);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
-        //    return View(anuncio);
-        //}
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
+            return View(anuncio);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -81,7 +81,7 @@ namespace DesgrudaCoisa.Controllers
                 TituloAnuncio = tituloAnuncio,
                 Valor = valor,
                 Descricao = descricao,
-                EnumStatusID = 1,
+                StatusID = db.StatusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
                 ImagemID = imagem.ImagemID,
                 CategoriaID = categoriaID,
                 VendedorEmail = "admin@mvc.br",
@@ -169,6 +169,29 @@ namespace DesgrudaCoisa.Controllers
         public ActionResult Filtro()
         {
             return View();
+        }
+
+        // AJAX: /Anuncio/ComprarAnuncio/5
+        [HttpPost]
+        //[Authorize] -- TODO: DEPOIS COLOCAR DIREITINHO
+        public ActionResult ComprarAnuncio(int id)
+        {
+            var anuncio = db.Anuncios.Find(id);
+            if (anuncio == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            string anuncioTitulo = anuncio.TituloAnuncio;
+            var status = db.StatusAnuncio.Where(x => x.Descricao == "Em negociacao").First();
+            anuncio.StatusID = status.StatusID;
+
+            db.Entry(anuncio).State = EntityState.Modified;
+            db.SaveChanges();
+
+            var results = new
+            {
+                Message = anuncioTitulo + " está em negociação.",
+            };
+            return Json(results);
         }
 
         // POST: Anuncio/FiltroAvancado

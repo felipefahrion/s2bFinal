@@ -50,7 +50,14 @@
             </div>
             <!-- Botao de compra -->
             <div class="section" style="padding-bottom:20px;">
-                <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Comprar</button>
+                @Html.ActionLink("Comprar", "ComprarAnuncio",
+                                 new { id = @Model.ID},
+                                 new
+                                 {
+                                     data_id = @Model.ID,
+                                     @class = "ComprarAnuncio btn btn-success glyphicon glyphicon-shopping-cart"
+                                 })
+                @*<button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Comprar</button>*@
             </div>
             <!-- Botao de compra -->
         </div>
@@ -94,7 +101,54 @@
         <!-- Detalhes do Anúncio -->
     </div>
 </div>
+<div hidden id="confirmar-dialog" title="Confirmação de compra">
+    <p>Deseja realmente comprar este Anuncio?</p>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+
+<script>
+        var deleteLinkObj;
+        var recordToDelete;
+        $(document).ready(function () {
+            $('.ComprarAnuncio').click(function () {
+                deleteLinkObj = $(this);
+                recordToDelete = $(this).attr("data-id");
+                $('#confirmar-dialog').dialog('open');
+                return false;
+            })
+        });
+        $('#confirmar-dialog').dialog({
+            autoOpen: false, width: 400, resizable: false,
+            modal: true, dialogClass: 'button',
+            buttons: {
+                "Confirmar": function () {
+                    $.post("/Anuncio/ComprarAnuncio", { "id": recordToDelete })
+                        .done(function (data) {
+                        if (data.Message == undefined) {
+                            //Gambiarra, por falta de tempo :)
+                            alert("Você precisa logar para Comprar o Anúncio");
+                        } else {
+                            alert(data.Message);
+                        }
+                        deleteLinkObj.closest("tr").hide('fast');
+                    })
+                    .fail(function () {
+                        alert("erro!");
+                    });
+                    $(this).dialog("close");
+                },
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+</script>
+}
