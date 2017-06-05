@@ -73,7 +73,7 @@ namespace DesgrudaCoisa.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(String tituloAnuncio, String descricao, decimal valor, int categoriaID, HttpPostedFileBase image)
         {
-            Imagem imagem = new Imagem { ImageFile = new byte[image.ContentLength], ImageMimeType = image.ContentType};
+            Imagem imagem = new Imagem { ImageFile = new byte[image.ContentLength], ImageMimeType = image.ContentType };
             image.InputStream.Read(imagem.ImageFile, 0, image.ContentLength);
             db.Imagens.Add(imagem);
             db.SaveChanges();
@@ -82,7 +82,7 @@ namespace DesgrudaCoisa.Controllers
                 TituloAnuncio = tituloAnuncio,
                 Valor = valor,
                 Descricao = descricao,
-                StatusID = db.StatusAnuncio.Single( g => g.Descricao == "Disponivel").StatusID,
+                StatusID = db.StatusAnuncio.Single(g => g.Descricao == "Disponivel").StatusID,
                 ImagemID = imagem.ImagemID,
                 CategoriaID = categoriaID,
                 VendedorEmail = "admin@mvc.br",
@@ -187,7 +187,7 @@ namespace DesgrudaCoisa.Controllers
             {
                 anuncio.CompradorEmail = User.Identity.GetUserName();
             }
-                anuncio.StatusID = status.StatusID;
+            anuncio.StatusID = status.StatusID;
 
             db.Entry(anuncio).State = EntityState.Modified;
             db.SaveChanges();
@@ -197,6 +197,28 @@ namespace DesgrudaCoisa.Controllers
                 Message = anuncioTitulo + " está em negociação.",
             };
             return Json(results);
+        }
+
+        public ActionResult BadgesNotificacoes()
+        {
+            string emailUsuarioLogado = null;
+            if (Request.IsAuthenticated)
+            {
+                emailUsuarioLogado = User.Identity.GetUserName();
+                int numAnunciosNegociacao = db.Anuncios.Where(x => (x.Status.Descricao == "Em negociacao") && (x.VendedorEmail == emailUsuarioLogado)).Count();
+                ViewBag.NumAnunciosNegociacao = numAnunciosNegociacao;
+            }
+            else
+            {
+                ViewBag.NumAnunciosNegociacao = 100;
+            }
+            return this.PartialView();
+        }
+
+        public ActionResult ListNotificacoesUsuario()
+        {
+            var anuncios = db.Anuncios.Where(x => (x.Status.Descricao == "Disponivel"));
+            return View(anuncios);
         }
 
         // POST: Anuncio/FiltroAvancado

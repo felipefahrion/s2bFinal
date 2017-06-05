@@ -36,12 +36,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Página Inicial", "Index", "Home")</li>
+                    <li>@{Html.RenderAction("CategoriaDropDown", "Categoria"); }</li>
                     <li>@Html.ActionLink("Criar Anuncios", "Create", "Anuncio")</li>
                     <li>@Html.ActionLink("Meus Anuncios", "ListMeusAnuncios", "Anuncio")</li>
+                    <li>@Html.ActionLink("Pesquisa Avançada", "Filtro", "Anuncio")</li>
+                    <li>@{Html.RenderAction("BadgesNotificacoes", "Anuncio"); }</li>
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                    <li>@{Html.RenderAction("CategoriaDropDown", "Categoria"); }</li>
-                    <li>@Html.ActionLink("Pesquisa Avançada", "Filtro", "Anuncio")</li>
                 </ul>
             </div>
         </div>

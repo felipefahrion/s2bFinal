@@ -1,0 +1,8 @@
+﻿@if (ViewBag.NumAnunciosNegociacao > 0)
+{
+    <a href="@Url.Action("ListNotificacoesUsuario", "Anuncio")">
+        Notificações
+        <span class="badge">@ViewBag.NumAnunciosNegociacao</span> 
+    </a>
+}
+
