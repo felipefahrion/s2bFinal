@@ -227,6 +227,12 @@ namespace DesgrudaCoisa.Controllers
             var anuncios = db.Anuncios.Include(a=>a.Status).Where(x => (x.Status.Descricao == "Disponivel"));
             //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
             //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
+            
+            //vendedor deve verificar os pedidos de compra
+            ViewBag.Vendedor = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
+            
+            //comprador deve avaliar os seus produtos comprados
+            ViewBag.Comprador = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
             return View(anuncios);
         }
 
