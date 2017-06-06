@@ -9,7 +9,7 @@ namespace DesgrudaCoisa.Models
     public class Anuncio
     {
         [Key]
-        public int ID { get; set; }
+        public int AnuncioID { get; set; }
 
         [Display(Name = "Título do Anúncio")]
         [StringLength(60, MinimumLength = 3)]
@@ -37,8 +37,7 @@ namespace DesgrudaCoisa.Models
         public int StatusID { get; set; }
         public virtual StatusAnuncio Status { get; set; }
         
-        public int? FaqID { get; set; }
-        public IEnumerable<FAQ> Faq { get; set; }
+        public ICollection<FAQ> Faq { get; set; }
 
 
     }

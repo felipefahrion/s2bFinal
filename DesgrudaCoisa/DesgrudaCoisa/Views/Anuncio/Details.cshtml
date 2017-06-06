@@ -15,17 +15,17 @@
             }
             else
             {
-                <img style="max-width:100%;" src="@Url.Action("GetImage", "Anuncio", new { id = @Model.ID})" />
+                <img style="max-width:100%;" src="@Url.Action("GetImage", "Anuncio", new { id = @Model.AnuncioID})" />
             }
         </div>
         <div class="col-xs-5" style="border:0px solid gray">
-            
+
             <h3>@Html.DisplayFor(model => model.TituloAnuncio)</h3>
             <h5 style="color:#337ab7">vendido por <a href="#">Desapega</a></h5>
-            
+
             <h6 class="title-price"><small>Preço:</small></h6>
             <h3 style="margin-top:0px;">R$ @Html.DisplayFor(model => model.Valor)</h3>
-            
+
             <div class="section">
                 <h6 class="title-attr" style="margin-top:15px;"><small>COR</small></h6>
                 <div>
@@ -51,10 +51,10 @@
             <!-- Botao de compra -->
             <div class="section" style="padding-bottom:20px;">
                 @Html.ActionLink("Comprar", "ComprarAnuncio",
-                                 new { id = @Model.ID},
+                                 new { id = @Model.AnuncioID },
                                  new
                                  {
-                                     data_id = @Model.ID,
+                                     data_id = @Model.AnuncioID,
                                      @class = "ComprarAnuncio btn btn-success glyphicon glyphicon-shopping-cart"
                                  })
                 @*<button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Comprar</button>*@
@@ -62,62 +62,102 @@
             <!-- Botao de compra -->
         </div>
         <!-- Detalhes do Anúncio -->
-        <div class="col-xs-9">
-            <ul class="menu-items">
-                <li class="active">Detalle del producto</li>
-                <li>Garantía</li>
-                <li>Vendedor</li>
-                <li>Envío</li>
-            </ul>
-            <div style="width:100%;border-top:1px solid silver">
-                <p style="padding:15px;">
-                    <small>
-                        Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go.
+        @*<div class="col-xs-9">
+                <ul class="menu-items">
+                    <li class="active">Detalle del producto</li>
+                    <li>Garantía</li>
+                    <li>Vendedor</li>
+                    <li>Envío</li>
+                </ul>
+                <div style="width:100%;border-top:1px solid silver">
+                    <p style="padding:15px;">
+                        <small>
+                            Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go.
 
-                        With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                            With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                        </small>
+                    </p>
+                    <small>
+                        <ul>
+                            <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
+                            <li>Available on GSM, AT&T, T-Mobile and other carriers</li>
+                            <li>Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks</li>
+                            <li>MicroUSB and USB connectivity</li>
+                            <li>Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth</li>
+                            <li>Wi-Fi hotspot to keep other devices online when a connection is not available</li>
+                            <li>SMS, MMS, email, Push Mail, IM and RSS messaging</li>
+                            <li>Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture</li>
+                            <li>Features 16 GB memory and 2 GB RAM</li>
+                            <li>Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS</li>
+                            <li>17 hours of talk time, 350 hours standby time on one charge</li>
+                            <li>Available in white or black</li>
+                            <li>Model I337</li>
+                            <li>Package includes phone, charger, battery and user manual</li>
+                            <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
+                        </ul>
                     </small>
-                </p>
-                <small>
-                    <ul>
-                        <li>Super AMOLED capacitive touchscreen display with 16M colors</li>
-                        <li>Available on GSM, AT&T, T-Mobile and other carriers</li>
-                        <li>Compatible with GSM 850 / 900 / 1800; HSDPA 850 / 1900 / 2100 LTE; 700 MHz Class 17 / 1700 / 2100 networks</li>
-                        <li>MicroUSB and USB connectivity</li>
-                        <li>Interfaces with Wi-Fi 802.11 a/b/g/n/ac, dual band and Bluetooth</li>
-                        <li>Wi-Fi hotspot to keep other devices online when a connection is not available</li>
-                        <li>SMS, MMS, email, Push Mail, IM and RSS messaging</li>
-                        <li>Front-facing camera features autofocus, an LED flash, dual video call capability and a sharp 4128 x 3096 pixel picture</li>
-                        <li>Features 16 GB memory and 2 GB RAM</li>
-                        <li>Upgradeable Jelly Bean v4.2.2 to Jelly Bean v4.3 Android OS</li>
-                        <li>17 hours of talk time, 350 hours standby time on one charge</li>
-                        <li>Available in white or black</li>
-                        <li>Model I337</li>
-                        <li>Package includes phone, charger, battery and user manual</li>
-                        <li>Phone is 5.38 inches high x 2.75 inches wide x 0.13 inches deep and weighs a mere 4.59 oz </li>
-                    </ul>
-                </small>
-            </div>
-        </div>
+                </div>
+            </div>*@
         <!-- Detalhes do Anúncio -->
     </div>
 </div>
+
+@if (ViewBag.faqs != null)
+{
+    <div class="panel-body">
+        <form role="form">
+            <fieldset>
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="Fazer perguntas" autofocus=""></textarea>
+                </div>
+                <button type="submit" id="button-perguntar" class="btn btn-success" data-loading-text="Loading...">Confirmar</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="container-perg-resp">
+        <div class="questions-block">
+            <ul class="questions-list">
+                @foreach (var faq in ViewBag.faqs)
+                {
+                    var f = @faq.Pergunta;
+                    <li class="question-group-1 ">
+                        <article class="questions-list-question">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                            <p>@faq.Pergunta</p>
+                            <a class="resp btn btn-default btn-sm">Responder</a>
+                            <div id="textAreaResp_@faq.FaqID" style=" padding-bottom: 20px;margin-top: 5px;">
+                                <textarea class='txtid' style="display:none;" rows='5' cols='50'></textarea>
+                            </div>
+                            <div id="textAreaResp_@faq.FaqID" style=" padding-bottom: 20px;margin-top: 5px;">
+                                <textarea class='txtid' style="display:none;" rows='5' cols='50'></textarea>
+                            </div>
+                        </article>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
 <div hidden id="confirmar-dialog" title="Confirmação de compra">
     <p>Deseja realmente comprar este Anuncio?</p>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Voltar", "Index")
-</p>
+@*<p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.AnuncioID }) |
+        @Html.ActionLink("Voltar", "Index")
+    </p>*@
 
 @section scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
 
-<script>
+    <script>
         var deleteLinkObj;
         var recordToDelete;
         $(document).ready(function () {
+
+
             $('.ComprarAnuncio').click(function () {
                 deleteLinkObj = $(this);
                 recordToDelete = $(this).attr("data-id");
@@ -132,17 +172,17 @@
                 "Confirmar": function () {
                     $.post("/Anuncio/ComprarAnuncio", { "id": recordToDelete })
                         .done(function (data) {
-                        if (data.Message == undefined) {
-                            //Gambiarra, por falta de tempo :)
-                            alert("Você precisa logar para Comprar o Anúncio");
-                        } else {
-                            alert(data.Message);
-                        }
-                        deleteLinkObj.closest("tr").hide('fast');
-                    })
-                    .fail(function () {
-                        alert("erro!");
-                    });
+                            if (data.Message == undefined) {
+                                //Gambiarra, por falta de tempo :)
+                                alert("Você precisa logar para Comprar o Anúncio");
+                            } else {
+                                alert(data.Message);
+                            }
+                            deleteLinkObj.closest("tr").hide('fast');
+                        })
+                        .fail(function () {
+                            alert("erro!");
+                        });
                     $(this).dialog("close");
                 },
                 "Cancelar": function () {
@@ -150,5 +190,20 @@
                 }
             }
         });
-</script>
+        $('.resp').click(function () {
+            $('.txtid').show();
+        });
+
+        //$('.resp').click(function () {
+        //var f = $('.resp').next()[0];
+        //    var id = f.getAttribute("id");
+        //    var conteudo = '#' + id;
+        //    console.log(conteudo);
+        //    $(conteudo + ' .txtid').show();
+        //});
+        $(".txtid").focusout(function () {
+            $(this).hide();
+        });
+
+    </script>
 }

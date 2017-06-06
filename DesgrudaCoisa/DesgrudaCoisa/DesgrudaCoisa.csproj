@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnuncioController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -324,9 +325,11 @@
     <Content Include="Views\Anuncio\FiltroAvancado.cshtml" />
     <Content Include="Views\Anuncio\BadgesNotificacoes.cshtml" />
     <Content Include="Views\Anuncio\ListNotificacoesUsuario.cshtml" />
+    <Content Include="Views\Faq\RenderizaTextArea.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

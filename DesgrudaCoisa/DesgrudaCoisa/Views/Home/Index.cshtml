@@ -58,7 +58,7 @@
                         }
                         else
                         {
-                            <a><img width="200" class="img-responsive" src="@Url.Action("GetImage", "Anuncio", new { id = item.ID})" /></a>
+                            <a><img width="200" class="img-responsive" src="@Url.Action("GetImage", "Anuncio", new { id = item.AnuncioID})" /></a>
                         }
                     </div>
                     <div class="info">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </article>
-                @Html.ActionLink("Entrar no anuncio", "Details", "Anuncio", new { id = item.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Entrar no anuncio", "Details", "Anuncio", new { id = item.AnuncioID }, new { @class = "btn btn-primary" })
             </div>
         }
     </div>

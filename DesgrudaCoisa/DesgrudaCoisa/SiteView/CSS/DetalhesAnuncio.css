@@ -1,33 +1,323 @@
-﻿ul > li{margin-right:25px;font-weight:lighter;cursor:pointer}
-li.active{border-bottom:3px solid silver;}
+﻿ul > li {
+    margin-right: 25px;
+    font-weight: lighter;
+    cursor: pointer
+}
 
-.item-photo{display:flex;justify-content:center;align-items:center;border-right:1px solid #f6f6f6;}
-.menu-items{list-style-type:none;font-size:11px;display:inline-flex;margin-bottom:0px;margin-top:20px}
-.btn-success{width:100%;border-radius:0px;}
-.section{width:100%;margin-left:-15px;padding:2px;padding-left:15px;padding-right:15px;background:#f8f9f9}
-.title-price{margin-top:30px;margin-bottom:0px;color:black}
-.title-attr{margin-top:0px;margin-bottom:0px;color:black;}
-.btn-minus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-right:0px;}
-.btn-plus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-left:0px;}
-div.section > div {width:100%;display:inline-flex;}
-div.section > div > input {margin:0px;padding-left:5px;font-size:10px;padding-right:5px;max-width:18%;text-align:center;}
-.attr,.attr2{cursor:pointer;margin-right:5px;height:20px;font-size:10px;padding:2px;border:1px solid gray;border-radius:2px;}
-.attr.active,.attr2.active{ border:1px solid orange;}
+li.active {
+    border-bottom: 3px solid silver;
+}
+
+.item-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #f6f6f6;
+}
+
+.menu-items {
+    list-style-type: none;
+    font-size: 11px;
+    display: inline-flex;
+    margin-bottom: 0px;
+    margin-top: 20px
+}
+
+.btn-success {
+    width: 100%;
+    border-radius: 0px;
+}
+
+.section {
+    width: 100%;
+    margin-left: -15px;
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #f8f9f9
+}
+
+.title-price {
+    margin-top: 30px;
+    margin-bottom: 0px;
+    color: black
+}
+
+.title-attr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: black;
+}
+
+.btn-minus {
+    cursor: pointer;
+    font-size: 7px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    border-right: 0px;
+}
+
+.btn-plus {
+    cursor: pointer;
+    font-size: 7px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    border-left: 0px;
+}
+
+div.section > div {
+    width: 100%;
+    display: inline-flex;
+}
+
+    div.section > div > input {
+        margin: 0px;
+        padding-left: 5px;
+        font-size: 10px;
+        padding-right: 5px;
+        max-width: 18%;
+        text-align: center;
+    }
+
+.attr, .attr2 {
+    cursor: pointer;
+    margin-right: 5px;
+    height: 20px;
+    font-size: 10px;
+    padding: 2px;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+    .attr.active, .attr2.active {
+        border: 1px solid orange;
+    }
 
 @media (max-width: 426px) {
-    .container {margin-top:0px !important;}
-    .container > .row{padding:0px !important;}
-    .container > .row > .col-xs-12.col-sm-5{
-        padding-right:0px ;    
+    .container {
+        margin-top: 0px !important;
     }
-    .container > .row > .col-xs-12.col-sm-9 > div > p{
-        padding-left:0px !important;
-        padding-right:0px !important;
+
+        .container > .row {
+            padding: 0px !important;
+        }
+
+            .container > .row > .col-xs-12.col-sm-5 {
+                padding-right: 0px;
+            }
+
+            .container > .row > .col-xs-12.col-sm-9 > div > p {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .container > .row > .col-xs-12.col-sm-9 > div > ul {
+                padding-left: 10px !important;
+            }
+
+    .section {
+        width: 104%;
     }
-    .container > .row > .col-xs-12.col-sm-9 > div > ul{
-        padding-left:10px !important;
-        
-    }            
-    .section{width:104%;}
-    .menu-items{padding-left:0px;}
+
+    .menu-items {
+        padding-left: 0px;
+    }
+}
+
+
+body {
+    padding-top: 30px;
+}
+
+.widget .panel-body {
+    padding: 0px;
+}
+
+.widget .list-group {
+    margin-bottom: 0;
+}
+
+.widget .panel-title {
+    display: inline
+}
+
+.widget .label-info {
+    float: right;
+}
+
+.widget li.list-group-item {
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+    .widget li.list-group-item:hover {
+        background-color: rgba(86,61,124,.1);
+    }
+
+.widget .mic-info {
+    color: #666666;
+    font-size: 11px;
+}
+
+.widget .action {
+    margin-top: 5px;
+}
+
+.widget .comment-text {
+    font-size: 12px;
+}
+
+.widget .btn-block {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.ui-group-buttons .or {
+    position: relative;
+    float: left;
+    width: .3em;
+    height: 1.3em;
+    z-index: 3;
+    font-size: 12px
+}
+
+    .ui-group-buttons .or:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        background-color: #5a5a5a;
+        margin-top: -.1em;
+        margin-left: -.9em;
+        width: 1.8em;
+        height: 1.8em;
+        line-height: 1.55;
+        color: #fff;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
+        border-radius: 500px;
+        -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .ui-group-buttons .or:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: ' ';
+        width: .3em;
+        height: 2.84em;
+        background-color: rgba(0,0,0,0);
+        border-top: .6em solid #5a5a5a;
+        border-bottom: .6em solid #5a5a5a
+    }
+
+    .ui-group-buttons .or.or-lg {
+        height: 1.3em;
+        font-size: 16px
+    }
+
+        .ui-group-buttons .or.or-lg:after {
+            height: 2.85em
+        }
+
+    .ui-group-buttons .or.or-sm {
+        height: 1em
+    }
+
+        .ui-group-buttons .or.or-sm:after {
+            height: 2.5em
+        }
+
+    .ui-group-buttons .or.or-xs {
+        height: .25em
+    }
+
+        .ui-group-buttons .or.or-xs:after {
+            height: 1.84em;
+            z-index: -1000
+        }
+
+/*text area de pergunta*/
+.form-group .form-control {
+    max-width: 500px;
+    margin-top: 90px;
+}
+
+#button-perguntar {
+    max-width: 500px;
+}
+
+.ui-group-buttons {
+    display: inline-block;
+}
+
+    .ui-group-buttons:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden
+    }
+
+    .ui-group-buttons .btn {
+        float: left;
+        border-radius: 0
+    }
+
+        .ui-group-buttons .btn:first-child {
+            margin-left: 0;
+            border-top-left-radius: .25em;
+            border-bottom-left-radius: .25em;
+            padding-right: 15px
+        }
+
+        .ui-group-buttons .btn:last-child {
+            border-top-right-radius: .25em;
+            border-bottom-right-radius: .25em;
+            padding-left: 15px
+        }
+
+
+/*Parte das perguntas feitas*/
+.container-perg-resp {
+    margin-top: 5%;
+    border: 1px solid #ededed;
+}
+
+    .container-perg-resp .questions-block {
+        margin-top: 10px;
+    }
+
+        .container-perg-resp .questions-block .questions-list li {
+            border-bottom: 1px solid #ddd;
+            list-style-type: none;
+        }
+
+            .container-perg-resp .questions-block .questions-list li span {
+                float: left;
+            }
+
+            .container-perg-resp .questions-block .questions-list li p {
+                margin-left: 23px;
+            }
+
+body {
+    margin-top: 120px;
 }

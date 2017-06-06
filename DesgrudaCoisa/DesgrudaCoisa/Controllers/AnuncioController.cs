@@ -36,10 +36,17 @@ namespace DesgrudaCoisa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Anuncio anuncio = db.Anuncios.Include(x=>x.Faq).Where(x=>x.AnuncioID == id).First();
             Anuncio anuncio = db.Anuncios.Find(id);
             if (anuncio == null)
             {
                 return HttpNotFound();
+            }
+            ViewBag.faqs = null;
+            IEnumerable<FAQ> listFaq = db.Faqs.Where(x => x.AnuncioID == anuncio.AnuncioID).ToList();
+            if (listFaq.Count() >= 1)
+            {
+                ViewBag.faqs = listFaq;
             }
             return View(anuncio);
         }
@@ -56,7 +63,7 @@ namespace DesgrudaCoisa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
+        public ActionResult Create([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +125,7 @@ namespace DesgrudaCoisa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TituloAnuncio,Valor,DataPublicacao,CategoriaID")] Anuncio anuncio)
+        public ActionResult Edit([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID")] Anuncio anuncio)
         {
             if (ModelState.IsValid)
             {
@@ -228,7 +235,7 @@ namespace DesgrudaCoisa.Controllers
         {
             //metodo de seleçao 
             //consultar no banco a partir dos inputs  
-            ViewBag.ID = new SelectList(db.Anuncios, "ID", "TituloAununcio");
+            ViewBag.ID = new SelectList(db.Anuncios, "AnuncioID", "TituloAununcio");
             return View();
             //return RedirectToAction("Index");
         }

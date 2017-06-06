@@ -14,6 +14,7 @@ namespace DesgrudaCoisa.Models
         public string Pergunta { get; set; }
         public string Resposta { get; set; }
 
-        public IEnumerable<Anuncio> Anuncios { get; set; }
+        public int AnuncioID { get; set; }
+        public ICollection<Anuncio> Anuncios { get; set; }
     }
 }

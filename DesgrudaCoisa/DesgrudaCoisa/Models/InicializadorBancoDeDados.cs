@@ -93,6 +93,16 @@ namespace DesgrudaCoisa.Models
              };
             anuncios.ForEach(s => context.Anuncios.Add(s));
             context.SaveChanges();
+
+            var faqs = new List<FAQ>
+            {
+                new FAQ {Pergunta = "Qual Preço?", AnuncioID = anuncios.Single( g => g.TituloAnuncio == "Mouse").AnuncioID },
+                new FAQ {Pergunta = "Está com garantia?", AnuncioID = anuncios.Single( g => g.TituloAnuncio == "Mouse").AnuncioID },
+
+             };
+
+            faqs.ForEach(s => context.Faqs.Add(s));
+            context.SaveChanges();
         }
     }
 }
