@@ -224,7 +224,9 @@ namespace DesgrudaCoisa.Controllers
 
         public ActionResult ListNotificacoesUsuario()
         {
-            var anuncios = db.Anuncios.Where(x => (x.Status.Descricao == "Disponivel"));
+            var anuncios = db.Anuncios.Include(a=>a.Status).Where(x => (x.Status.Descricao == "Disponivel"));
+            //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
+            //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
             return View(anuncios);
         }
 

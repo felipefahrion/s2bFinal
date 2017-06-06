@@ -23,9 +23,14 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.DataPublicacao)*@
-                @Html.ActionLink("Fechar Negócio", "Edit", new { id = item.ID }, new { @class = "label label-warning" })
-                @Html.ActionLink("Desistir da venda", "Details", new { id = item.ID }, new { @class = "label label-info" })
+                @if(item.Status.Descricao == "Em negociacao") { 
+                    @Html.ActionLink("Fechar Negócio", "Edit", new { id = item.AnuncioID }, new { @class = "label label-warning" })
+                    @Html.ActionLink("Desistir da venda", "Details", new { id = item.AnuncioID }, new { @class = "label label-info" })
+                }
+                else
+                {
+                    @Html.ActionLink("Avaliar Produto", "Details", new { id = item.AnuncioID }, new { @class = "label label-info" })
+                }
             </td>
         </tr>
     }
