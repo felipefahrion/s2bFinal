@@ -125,13 +125,15 @@
                         <article class="questions-list-question">
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                             <p>@faq.Pergunta</p>
-                            <a class="resp btn btn-default btn-sm">Responder</a>
-                            <div id="textAreaResp_@faq.FaqID" style=" padding-bottom: 20px;margin-top: 5px;">
-                                <textarea class='txtid' style="display:none;" rows='5' cols='50'></textarea>
-                            </div>
-                            <div id="textAreaResp_@faq.FaqID" style=" padding-bottom: 20px;margin-top: 5px;">
-                                <textarea class='txtid' style="display:none;" rows='5' cols='50'></textarea>
-                            </div>
+                            @*<a class="resp btn btn-default btn-sm">Responder</a>*@
+                            @Html.ActionLink("Responder", "ResponderPergunta",
+                                 new { id = @Model.AnuncioID },
+                                 new
+                                 {
+                                     data_id = @Model.AnuncioID,
+                                     pergunta = @faq.Pergunta,
+                                     @class = "ResponderAnuncio btn btn-default btn-sm"
+                                 })
                         </article>
                     </li>
                 }
@@ -141,6 +143,10 @@
 }
 <div hidden id="confirmar-dialog" title="Confirmação de compra">
     <p>Deseja realmente comprar este Anuncio?</p>
+</div>
+<div hidden id="responder-dialog" title="Faça sua pergunta">
+    <p>Deseja realmente responder este Anuncio?</p>
+    <textarea id='textArea' style=" padding-bottom: 20px;margin-top: 5px;" rows='5' cols='50'></textarea>
 </div>
 @*<p>
         @Html.ActionLink("Editar", "Edit", new { id = Model.AnuncioID }) |
@@ -155,13 +161,20 @@
     <script>
         var deleteLinkObj;
         var recordToDelete;
+        var respondeAnuncioId;
+        var perguntaParaResp;
         $(document).ready(function () {
-
-
             $('.ComprarAnuncio').click(function () {
                 deleteLinkObj = $(this);
                 recordToDelete = $(this).attr("data-id");
                 $('#confirmar-dialog').dialog('open');
+                return false;
+            })
+            $('.ResponderAnuncio').click(function () {
+                deleteLinkObj = $(this);
+                respondeAnuncioId = $(this).attr("data-id");
+                perguntaParaResp = $(this).attr("pergunta");
+                $('#responder-dialog').dialog('open');
                 return false;
             })
         });
@@ -190,20 +203,29 @@
                 }
             }
         });
-        $('.resp').click(function () {
-            $('.txtid').show();
+        $('#responder-dialog').dialog({
+            autoOpen: false, width: 400, resizable: false,
+            modal: true, dialogClass: 'button',
+            buttons: {
+                "Confirmar": function () {
+                    $.post("/Anuncio/ResponderAnuncio", { "id": respondeAnuncioId, "contentResposta": $("#textArea").val(), "pergunta": perguntaParaResp  })
+                        .done(function (data) {
+                            if (data.Message == undefined) {
+                                alert("Você precisa logar para Responder o Anúncio");
+                            } else {
+                                alert(data.Message);
+                            }
+                            deleteLinkObj.closest("tr").hide('fast');
+                        })
+                        .fail(function () {
+                            alert("Acontenceu algum Erro. Mensagem não enviada");
+                        });
+                    $(this).dialog("close");
+                },
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                }
+            }
         });
-
-        //$('.resp').click(function () {
-        //var f = $('.resp').next()[0];
-        //    var id = f.getAttribute("id");
-        //    var conteudo = '#' + id;
-        //    console.log(conteudo);
-        //    $(conteudo + ' .txtid').show();
-        //});
-        $(".txtid").focusout(function () {
-            $(this).hide();
-        });
-
     </script>
 }
