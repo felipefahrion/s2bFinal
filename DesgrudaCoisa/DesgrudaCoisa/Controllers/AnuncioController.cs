@@ -174,7 +174,7 @@ namespace DesgrudaCoisa.Controllers
             base.Dispose(disposing);
         }
 
-        
+
 
         // AJAX: /Anuncio/ComprarAnuncio/5
         [HttpPost]
@@ -221,13 +221,13 @@ namespace DesgrudaCoisa.Controllers
 
         public ActionResult ListNotificacoesUsuario()
         {
-            var anuncios = db.Anuncios.Include(a=>a.Status).Where(x => (x.Status.Descricao == "Disponivel"));
+            var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Disponivel"));
             //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
             //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
-            
+
             //vendedor deve verificar os pedidos de compra
             ViewBag.Vendedor = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
-            
+
             //comprador deve avaliar os seus produtos comprados
             ViewBag.Comprador = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
             return View(anuncios);
@@ -267,6 +267,25 @@ namespace DesgrudaCoisa.Controllers
             var results = new
             {
                 Message = "A resposta foi enviada!",
+            };
+            return Json(results);
+        }
+
+        // AJAX: /Anuncio/FazerPergunta/5
+        [HttpPost]
+        public ActionResult FazerPergunta(int id, string conteudoPergunta)
+        {
+            FAQ faq = new FAQ { AnuncioID = id, Pergunta = conteudoPergunta };
+            if (Request.IsAuthenticated)
+            {
+                string emailUsuario = User.Identity.GetUserName();
+                faq = new FAQ { AnuncioID = id, Pergunta = conteudoPergunta, UsuarioEmail = emailUsuario };
+            }
+            db.Faqs.Add(faq);
+            db.SaveChanges();
+            var results = new
+            {
+                Message = "A pergunta foi enviada!",
             };
             return Json(results);
         }

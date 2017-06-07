@@ -101,20 +101,25 @@
         <!-- Detalhes do Anúncio -->
     </div>
 </div>
-
-@if (ViewBag.faqs != null)
-{
     <div class="panel-body">
         <form role="form">
             <fieldset>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" placeholder="Fazer perguntas"></textarea>
+                    <textarea class="form-control" id="textAreaFazPergunta" rows="3" placeholder="Fazer perguntas"></textarea>
                 </div>
-                <button type="submit" id="button-perguntar" class="btn btn-success" data-loading-text="Loading...">Confirmar</button>
+                @Html.ActionLink("Confirmar", "FazerPergunta",
+                                          new { id = @Model.AnuncioID },
+                                          new
+                                          {
+                                              data_id = @Model.AnuncioID,
+                                              @class = "FazerPergunta btn btn-success",
+                                              @id = "button-perguntar"
+                                          })
             </fieldset>
         </form>
     </div>
-
+@if (ViewBag.faqs != null)
+{
     <div class="container-perg-resp">
         <div class="questions-block">
             <ul class="questions-list">
@@ -124,16 +129,22 @@
                     <li class="question-group-1 ">
                         <article class="questions-list-question">
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                            <p>@faq.Pergunta</p>
-                            @*<a class="resp btn btn-default btn-sm">Responder</a>*@
-                            @Html.ActionLink("Responder", "ResponderPergunta",
-                                 new { id = @Model.AnuncioID },
-                                 new
-                                 {
-                                     data_id = @Model.AnuncioID,
-                                     pergunta = @faq.Pergunta,
-                                     @class = "ResponderAnuncio btn btn-default btn-sm"
-                                 })
+                            <p><b>@faq.Pergunta</b></p>
+                            @if (@faq.Resposta != null)
+                            {
+                                <p>@faq.Resposta</p>
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Responder", "ResponderPergunta",
+                                          new { id = @Model.AnuncioID },
+                                          new
+                                          {
+                                              data_id = @Model.AnuncioID,
+                                              pergunta = @faq.Pergunta,
+                                              @class = "ResponderAnuncio btn btn-default btn-sm"
+                                          })
+                            }
                         </article>
                     </li>
                 }
@@ -162,7 +173,8 @@
         var deleteLinkObj;
         var recordToDelete;
         var respondeAnuncioId;
-        var perguntaParaResp;
+        var descricacaoPergunta;
+        var idAnuncio
         $(document).ready(function () {
             $('.ComprarAnuncio').click(function () {
                 deleteLinkObj = $(this);
@@ -173,7 +185,7 @@
             $('.ResponderAnuncio').click(function () {
                 deleteLinkObj = $(this);
                 respondeAnuncioId = $(this).attr("data-id");
-                perguntaParaResp = $(this).attr("pergunta");
+                descricacaoPergunta = $(this).attr("pergunta");
                 $('#responder-dialog').dialog('open');
                 return false;
             })
@@ -197,6 +209,7 @@
                             alert("erro!");
                         });
                     $(this).dialog("close");
+                    window.location.reload();
                 },
                 "Cancelar": function () {
                     $(this).dialog("close");
@@ -208,7 +221,7 @@
             modal: true, dialogClass: 'button',
             buttons: {
                 "Confirmar": function () {
-                    $.post("/Anuncio/ResponderAnuncio", { "id": respondeAnuncioId, "contentResposta": $("#textArea").val(), "pergunta": perguntaParaResp  })
+                    $.post("/Anuncio/ResponderAnuncio", { "id": respondeAnuncioId, "contentResposta": $("#textArea").val(), "pergunta": descricacaoPergunta })
                         .done(function (data) {
                             if (data.Message == undefined) {
                                 alert("Você precisa logar para Responder o Anúncio");
@@ -221,11 +234,32 @@
                             alert("Acontenceu algum Erro. Mensagem não enviada");
                         });
                     $(this).dialog("close");
+                    window.location.reload();
                 },
                 "Cancelar": function () {
                     $(this).dialog("close");
                 }
             }
         });
+        $('.FazerPergunta').click(function () {
+            deleteLinkObj = $(this);
+            idAnuncio = $(this).attr("data-id");
+
+            $.post("/Anuncio/FazerPergunta", { "id": idAnuncio, "conteudoPergunta": $('#textAreaFazPergunta').val() })
+                .done(function (data) {
+                    if (data.Message == undefined) {
+                        //Gambiarra, por falta de tempo :)
+                        alert("Você precisa logar para Fazer perguntas no Anúncio");
+                    } else {
+                        alert(data.Message);
+                    }
+                    deleteLinkObj.closest("tr").hide('fast');
+                })
+                .fail(function () {
+                    alert("Acontenceu algum Erro. Pergunta não enviada");
+                });
+            window.location.reload();
+            return false;
+        })
     </script>
 }
