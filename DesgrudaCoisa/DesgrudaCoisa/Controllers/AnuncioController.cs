@@ -174,10 +174,7 @@ namespace DesgrudaCoisa.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Filtro()
-        {
-            return View();
-        }
+        
 
         // AJAX: /Anuncio/ComprarAnuncio/5
         [HttpPost]
@@ -236,14 +233,24 @@ namespace DesgrudaCoisa.Controllers
             return View(anuncios);
         }
 
-        // POST: Anuncio/FiltroAvancado
+        public ActionResult Filtro()
+        {
+            var pesquisaProds = db.Anuncios.Where(x => (x.TituloAnuncio == "TituloAnuncio")).ToList();
+            return View();
+        }
+
+        // POST: Anuncio/Pesquisar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PesquisarFiltro([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
+        public ActionResult Pesquisar([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
         {
             //metodo de seleçao 
             //consultar no banco a partir dos inputs  
-            ViewBag.ID = new SelectList(db.Anuncios, "AnuncioID", "TituloAununcio");
+            //ViewBag.TituloAnuncio = new SelectList(db.Anuncios, "TituloAununcio");
+            //ViewBag.Valor = new SelectList(db.Anuncios, "Valor");
+            var pesquisaProds = db.Anuncios.Where(p => (p.TituloAnuncio == "TituloAnuncio")).ToList();
+            ViewBag.pesquisaProds = pesquisaProds;
+
             return View();
             //return RedirectToAction("Index");
         }
