@@ -254,5 +254,21 @@ namespace DesgrudaCoisa.Controllers
             return View();
             //return RedirectToAction("Index");
         }
+
+        // AJAX: /Anuncio/ResponderAnuncio/5
+        [HttpPost]
+        public ActionResult ResponderAnuncio(int id, string contentResposta, string pergunta)
+        {
+            IEnumerable<FAQ> faqs = db.Faqs.Where(x => (x.AnuncioID == id));
+            FAQ fagTarget = faqs.Where(x => x.Pergunta == pergunta).First();
+            fagTarget.Resposta = contentResposta;
+            db.Entry(fagTarget).State = EntityState.Modified;
+            db.SaveChanges();
+            var results = new
+            {
+                Message = "A resposta foi enviada!",
+            };
+            return Json(results);
+        }
     }
 }
