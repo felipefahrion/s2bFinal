@@ -3,7 +3,7 @@
     ViewBag.Title = "Filtrar pesquisa";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Filtro", "Anuncio", FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -25,8 +25,10 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="PesquisarFiltro" class="btn btn-success" />
+                @*@Html.ActionLink("Pesquisar", "Pesquisar", "Anuncio", null, new { @class = "btn btn-success" })*@
+                <input type="submit" value="Pesquisar" class="btn btn-warning" />
             </div>
         </div>
+        
     </div>
 }

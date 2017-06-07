@@ -321,9 +321,9 @@
     <Content Include="Views\Categoria\Index.cshtml" />
     <Content Include="Views\Categoria\CategoriaDropDown.cshtml" />
     <Content Include="Views\Anuncio\Filtro.cshtml" />
-    <Content Include="Views\Anuncio\FiltroAvancado.cshtml" />
     <Content Include="Views\Anuncio\BadgesNotificacoes.cshtml" />
     <Content Include="Views\Anuncio\ListNotificacoesUsuario.cshtml" />
+    <Content Include="Views\Anuncio\Pesquisar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
