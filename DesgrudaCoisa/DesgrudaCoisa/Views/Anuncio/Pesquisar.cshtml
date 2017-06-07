@@ -1,16 +1,16 @@
 ﻿@model DesgrudaCoisa.Models.Anuncio
 
-<!DOCTYPE html>
+@using (Html.BeginForm("Filtro", "Anuncio", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Pesquisar</title>
-</head>
-<body>
-    <div> 
-        <span class="badge">@ViewBag.pesquisaProds</span>     
-        
+        <div>            
+                @Html.HiddenFor(pesquisaProds => Model.TituloAnuncio)
+            
+            <span class="badge">@ViewBag.pesquisaProds</span>
+
+        </div>
+
     </div>
-</body>
-</html>
+}

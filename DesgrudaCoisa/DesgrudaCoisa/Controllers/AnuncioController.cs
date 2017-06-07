@@ -235,26 +235,27 @@ namespace DesgrudaCoisa.Controllers
 
         public ActionResult Filtro()
         {
-            var pesquisaProds = db.Anuncios.Where(x => (x.TituloAnuncio == "TituloAnuncio")).ToList();
+            //var pesquisaProds = db.Anuncios.Where(x => (x.TituloAnuncio == "TituloAnuncio")).ToList();
             return View();
         }
 
         // POST: Anuncio/Pesquisar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pesquisar([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
+        public ActionResult Filtro([Bind(Include = "TituloAnuncio,Valor")] Anuncio anuncio)
         {
             //metodo de seleçao 
             //consultar no banco a partir dos inputs  
             //ViewBag.TituloAnuncio = new SelectList(db.Anuncios, "TituloAununcio");
             //ViewBag.Valor = new SelectList(db.Anuncios, "Valor");
-            var pesquisaProds = db.Anuncios.Where(p => (p.TituloAnuncio == "TituloAnuncio")).ToList();
+            var pesquisaProds = db.Anuncios.Where(p => (p.TituloAnuncio == "TituloAnuncio"));
             ViewBag.pesquisaProds = pesquisaProds;
 
-            return View();
+            return View(pesquisaProds);
             //return RedirectToAction("Index");
         }
 
+        
         // AJAX: /Anuncio/ResponderAnuncio/5
         [HttpPost]
         public ActionResult ResponderAnuncio(int id, string contentResposta, string pergunta)
