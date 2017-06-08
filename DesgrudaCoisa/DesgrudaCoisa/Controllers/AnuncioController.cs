@@ -42,39 +42,29 @@ namespace DesgrudaCoisa.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.faqs = null;
             IEnumerable<FAQ> listFaq = db.Faqs.Where(x => x.AnuncioID == anuncio.AnuncioID).ToList();
             if (listFaq.Count() >= 1)
             {
                 ViewBag.faqs = listFaq;
             }
+            if (Request.IsAuthenticated)
+            {
+                string emailVend = User.Identity.GetUserName();
+                if (anuncio.VendedorEmail == emailVend)
+                {
+                    ViewBag.VendedorLogado = true;
+                }
+            }
             return View(anuncio);
         }
 
         // GET: Anuncio/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria");
             return View();
         }
-
-        // POST: Anuncio/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Anuncios.Add(anuncio);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
-        //    return View(anuncio);
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -179,7 +169,7 @@ namespace DesgrudaCoisa.Controllers
 
         // AJAX: /Anuncio/ComprarAnuncio/5
         [HttpPost]
-        //[Authorize] -- TODO: DEPOIS COLOCAR DIREITINHO
+        [Authorize]
         public ActionResult ComprarAnuncio(int id)
         {
             var anuncio = db.Anuncios.Find(id);
@@ -213,25 +203,26 @@ namespace DesgrudaCoisa.Controllers
                 int numAnunciosNegociacao = db.Anuncios.Where(x => (x.Status.Descricao == "Em negociacao") && (x.VendedorEmail == emailUsuarioLogado)).Count();
                 ViewBag.NumAnunciosNegociacao = numAnunciosNegociacao;
             }
-            else
-            {
-                ViewBag.NumAnunciosNegociacao = 100;
-            }
             return this.PartialView();
         }
-
+        [Authorize]
         public ActionResult ListNotificacoesUsuario()
         {
-            var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Disponivel"));
-            //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
-            //var anuncios = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
-
-            //vendedor deve verificar os pedidos de compra
-            ViewBag.Vendedor = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao"));
-
-            //comprador deve avaliar os seus produtos comprados
-            ViewBag.Comprador = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido"));
-            return View(anuncios);
+            string emailUsuarioLogado = null;
+            if (Request.IsAuthenticated)
+            {
+                emailUsuarioLogado = User.Identity.GetUserName();
+                //vendedor deve verificar os pedidos de compra
+                //ViewBag.Vendedor = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao") && (x.VendedorEmail == emailUsuarioLogado));
+                IEnumerable<Anuncio> anuncioListEmNegocio = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Em negociacao") && (x.VendedorEmail == emailUsuarioLogado));
+                ViewBag.Vendedor = anuncioListEmNegocio;
+                ViewBag.VendedorResult = anuncioListEmNegocio.ToList().Count();
+                //comprador deve avaliar os seus produtos comprados
+                IEnumerable<Anuncio> anuncioListVendido = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido") && (x.CompradorEmail == emailUsuarioLogado));
+                ViewBag.Comprador = anuncioListVendido;
+                ViewBag.CompradorResult = anuncioListVendido.ToList().Count();
+            }
+            return View();
         }
 
         public ActionResult Filtro()
@@ -256,7 +247,7 @@ namespace DesgrudaCoisa.Controllers
             //return RedirectToAction("Index");
         }
 
-        
+
         // AJAX: /Anuncio/ResponderAnuncio/5
         [HttpPost]
         public ActionResult ResponderAnuncio(int id, string contentResposta, string pergunta)
@@ -275,6 +266,7 @@ namespace DesgrudaCoisa.Controllers
 
         // AJAX: /Anuncio/FazerPergunta/5
         [HttpPost]
+        [Authorize]
         public ActionResult FazerPergunta(int id, string conteudoPergunta)
         {
             FAQ faq = new FAQ { AnuncioID = id, Pergunta = conteudoPergunta };
@@ -290,6 +282,28 @@ namespace DesgrudaCoisa.Controllers
                 Message = "A pergunta foi enviada!",
             };
             return Json(results);
+        }
+
+        public ActionResult FecharNegocio(int id)
+        {
+            StatusAnuncio status = db.StatusAnuncio.Where(x => x.Descricao == "Vendido").First();
+            int IdVendido = status.StatusID;
+            Anuncio anuncio = db.Anuncios.Find(id);
+            anuncio.StatusID = IdVendido;
+            db.Entry(anuncio).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ListNotificacoesUsuario");
+        }
+
+        public ActionResult DesistirVenda(int id)
+        {
+            StatusAnuncio status = db.StatusAnuncio.Where(x => x.Descricao == "Desistencia de venda").First();
+            int IdVendido = status.StatusID;
+            Anuncio anuncio = db.Anuncios.Find(id);
+            anuncio.StatusID = IdVendido;
+            db.Entry(anuncio).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ListNotificacoesUsuario");
         }
     }
 }

@@ -10,5 +10,6 @@ namespace DesgrudaCoisa.Models
         public DbSet<Imagem> Imagens { get; set; }
         public DbSet<StatusAnuncio> StatusAnuncio { get; set; }
         public DbSet<FAQ> Faqs { get; set; }
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
     }
 }

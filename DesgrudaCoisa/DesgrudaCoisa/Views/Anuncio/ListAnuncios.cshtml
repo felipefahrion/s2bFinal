@@ -3,50 +3,41 @@
 @{
     ViewBag.Title = "Listagem de Anuncios";
 }
-
+<link href="~/SiteView/CSS/HomeListAnuncio.css" rel="stylesheet" type="text/css" />
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h2>Index</h2>
-
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Categoria.TituloCategoria)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TituloAnuncio)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Valor)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Categoria.TituloCategoria)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TituloAnuncio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Valor)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.AnuncioID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.AnuncioID })
-                        </td>
-                    </tr>
-                }
-
-            </table>
-
+        <div class="col-sm-12" style="padding-top: 15px; padding-bottom: 15px; ">
+            <h2>Resultado da Pesquisa</h2>
         </div>
+        @foreach (var item in Model)
+            {
+            <div class="col-sm-3" style="margin-bottom: 40px;">
+                <article class="col-item">
+                    <div class="photo">
+                        @if (item.Imagem.ImageUrl != null)
+                        {
+                            <a><img style="height: 250px; padding: 15px;" src="@item.Imagem.ImageUrl" alt=@item.TituloAnuncio class="img-responsive" /></a>
+                        }
+                        else
+                        {
+                            <a><img style="height: 250px; padding: 15px;" class="img-responsive" src="@Url.Action("GetImage", "Anuncio", new { id = item.AnuncioID})" /></a>
+                        }
+                    </div>
+                    <div class="info">
+                        <div class="row">
+                            <div class="price-details col-md-12">
+                                <h1><b>@Html.DisplayFor(modelItem => item.TituloAnuncio)</b></h1><br /><br />
+                                <p class="details">
+                                    @Html.DisplayFor(modelItem => item.formataDescricao)...
+                                </p>
+                                <br />
+                                <span class="price-new">R$@Html.DisplayFor(modelItem => item.Valor)</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                @Html.ActionLink("Entrar no anuncio", "Details", "Anuncio", new { id = item.AnuncioID }, new { @class = "btn btn-primary" })
+            </div>
+        }
     </div>
 </div>

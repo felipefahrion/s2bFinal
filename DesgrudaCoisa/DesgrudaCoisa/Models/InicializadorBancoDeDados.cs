@@ -7,8 +7,8 @@ using System.Web;
 
 namespace DesgrudaCoisa.Models
 {
-    //public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseIfModelChanges<MapeamentoEntidadesContext>
-    public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseAlways<MapeamentoEntidadesContext>
+    public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseIfModelChanges<MapeamentoEntidadesContext>
+    //public class InicializadorBancoDeDados : System.Data.Entity.DropCreateDatabaseAlways<MapeamentoEntidadesContext>
     {
         protected override void Seed(MapeamentoEntidadesContext context)
         {
@@ -76,7 +76,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/carrinhoBebe.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Infantil").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Porto Alegre"
                 },
                 new Anuncio {
                     TituloAnuncio = "Banquetas",
@@ -86,7 +87,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/banquetas.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Casa").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Paraná"
                 },
 
                 new Anuncio {
@@ -97,7 +99,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/packBreakingBad.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Filmes e Séries").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Santa Catarina"
                 },
                 new Anuncio {
                     TituloAnuncio = "Rélógio",
@@ -107,7 +110,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/relogio.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Acessórios").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Acre"
                 },
 
                 new Anuncio {
@@ -118,7 +122,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/mouse.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Rio de Janeiro"
                 },
                 new Anuncio {
                     TituloAnuncio = "Livro Steve Jobs",
@@ -128,7 +133,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/livro.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Informatica").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Caxias do Sul"
                 },
                 new Anuncio {
                     TituloAnuncio = "Creme de massagem drenante",
@@ -138,7 +144,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/crememassagem.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Estetica").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "Recife"
                 },
                 new Anuncio {
                     TituloAnuncio = "Halteres 20 kg",
@@ -148,7 +155,8 @@ namespace DesgrudaCoisa.Models
                     ImagemID = imagens.Single( g => g.ImageUrl == "/Images/halteres.jpg").ImagemID,
                     CategoriaID =  categorias.Single( g => g.TituloCategoria == "Academia").CategoriaID,
                     DataPublicacao = DateTime.Parse("1986-2-23"),
-                    VendedorEmail = "admin@mvc.br",
+                    VendedorEmail = "admin@s2b.br",
+                    Local = "São Paulo"
                 },
              };
             anuncios.ForEach(s => context.Anuncios.Add(s));

@@ -15,6 +15,6 @@ namespace DesgrudaCoisa.Models
         public string Resposta { get; set; }
 
         public int AnuncioID { get; set; }
-        public Anuncio Anuncios { get; set; }
+        public Anuncio Anuncio { get; set; }
     }
 }

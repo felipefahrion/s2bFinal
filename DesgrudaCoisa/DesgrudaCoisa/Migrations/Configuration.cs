@@ -21,23 +21,27 @@ namespace DesgrudaCoisa.Migrations
             u => u.UserName,
             new ApplicationUser
             {
-                UserName = "aa@mvc.br",
-              //  FullName = "Usuario AA",
-                PasswordHash = hasher.HashPassword("Pass@word1"),
+                UserName = "admin@s2b.br",
+                PasswordHash = hasher.HashPassword("s2b"),
                 SecurityStamp = Guid.NewGuid().ToString()
             },
               new ApplicationUser
               {
                   UserName = "hugo@s2b.br",
-                  //  FullName = "Usuario AA",
-                  PasswordHash = hasher.HashPassword("Pass@word1"),
+                  PasswordHash = hasher.HashPassword("s2b"),
+                  SecurityStamp = Guid.NewGuid().ToString()
+              },
+              new ApplicationUser
+              {
+                  UserName = "luis@s2b.br",
+                  PasswordHash = hasher.HashPassword("s2b"),
                   SecurityStamp = Guid.NewGuid().ToString()
               },
             new ApplicationUser
             {
-                UserName = "admin@mvc.br",
+                UserName = "ze@s2b.br",
                // FullName = "Administrador",
-                PasswordHash = hasher.HashPassword("Pass@word1"),
+                PasswordHash = hasher.HashPassword("s2b"),
                 SecurityStamp = Guid.NewGuid().ToString()
             });
         }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - NOME DA EMPRESA</title>
+    <title>@ViewBag.Title - Desgruda Algo</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/jqueryui")
     @Scripts.Render("~/bundles/modernizr")
@@ -20,12 +20,11 @@
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="background-color: #F1F1F1; COL">
                         <img src="~/Images/menu.png" class="img-responsive" style="width: 20px;" />
                     </button>
-                    @Html.ActionLink("Nome da Empresa", "Index", "Home", new { area = "" }, new { @class = "navbar-brand corBranca margin-top-5" })
+                    @Html.ActionLink("Desgruda Algo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand corBranca margin-top-5" })
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right  margin-top-5">
                         <li>@Html.ActionLink("Página Inicial", "Index", "Home", null, new { @class = "corBranca link-menu" })</li>
-                        @*<li>@Html.ActionLink("Sobre", "About", "Home", null, new { @class = "corBranca link-menu" })</li>*@
                         <li class="margin-top-15">@{Html.RenderAction("CategoriaDropDown", "Categoria", new { @class = "corBranca link-menu" }); }</li>
                         <li>@Html.ActionLink("Criar Anuncios", "Create", "Anuncio", null, new { @class = "corBranca link-menu" })</li>
                         <li>@Html.ActionLink("Meus Anuncios", "ListMeusAnuncios", "Anuncio", null, new { @class = "corBranca link-menu" })</li>
@@ -63,7 +62,7 @@
     <div class="container-fluid">
         <hr />
         <center>
-            <p>&copy; @DateTime.Now.Year - Help Us</p>
+            <p>&copy; @DateTime.Now.Year - Desgruda Algo</p>
         </center>
     </div>
 

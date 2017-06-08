@@ -1,8 +1,8 @@
-﻿@if (ViewBag.NumAnunciosNegociacao > 0)
-{
-    <a href="@Url.Action("ListNotificacoesUsuario", "Anuncio")" class="link-menu">
-        Notificações
-        <span class="badge" style="background-color: #FFFFFF; color: #000000;">@ViewBag.NumAnunciosNegociacao</span> 
-    </a>
-}
-
+﻿
+<a href="@Url.Action("ListNotificacoesUsuario", "Anuncio")" class="link-menu">
+    Notificações
+    @if (ViewBag.NumAnunciosNegociacao > 0)
+    {
+        <span class="badge" style="background-color: #FFFFFF; color: #000000;">@ViewBag.NumAnunciosNegociacao</span>
+    }
+</a>
