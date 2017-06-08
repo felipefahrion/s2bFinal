@@ -25,7 +25,7 @@ namespace DesgrudaCoisa.Controllers
 
             if (!String.IsNullOrEmpty(pesquisar))
             {
-                anuncios = anuncios.Where(s => s.TituloAnuncio.Contains(pesquisar));
+                anuncios = anuncios.Where(s => (s.TituloAnuncio.Contains(pesquisar) || s.Categoria.TituloCategoria.Contains(pesquisar)));
             }
             return View(anuncios.ToList());
         }
@@ -122,7 +122,7 @@ namespace DesgrudaCoisa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID")] Anuncio anuncio)
+        public ActionResult Edit([Bind(Include = "AnuncioID,TituloAnuncio,Valor,CategoriaID,Descricao,Local")] Anuncio anuncio)
         {
             if (ModelState.IsValid)
             {
@@ -134,10 +134,30 @@ namespace DesgrudaCoisa.Controllers
             return View(anuncio);
         }
 
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditTitulo(int AnuncioID,string tituloAnuncio)
+        {
+            Anuncio anuncio = db.Anuncios.Find(AnuncioID);
+            anuncio.TituloAnuncio = tituloAnuncio;
+            if (ModelState.IsValid)
+            {
+                db.Entry(anuncio).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ListMeusAnuncios");
+            }
+            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
+            return View(anuncio);
+        }
+        [Authorize]
         public ActionResult ListMeusAnuncios(string searchString)
         {
-            var anuncios = db.Anuncios.Include(a => a.Categoria);
+            string emailUsuario = null;
+            if (Request.IsAuthenticated)
+            {
+                emailUsuario = User.Identity.GetUserName();
+            }
+            IEnumerable<Anuncio> anuncios = db.Anuncios.Include(a => a.Categoria).Where(x=>x.VendedorEmail == emailUsuario);
 
             //pode ser assim tambem
             //var movies = from anuncio in movieDb.Anuncios select anuncio;

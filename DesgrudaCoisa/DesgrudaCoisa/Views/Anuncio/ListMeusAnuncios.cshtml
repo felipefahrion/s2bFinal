@@ -3,11 +3,42 @@
 @{
     ViewBag.Title = "Listagem dos Meus Anuncios";
 }
+<link href="~/SiteView/CSS/HomeListAnuncio.css" rel="stylesheet" type="text/css" />
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h1>Aqui será a tela onde sera listados todos os anuncios que um determinado usuario criou</h1>
-            <h2>TODO: A listagem dessa tela deverá ser diferente da listagem dos anúncios (como pesquisa)</h2>
+        <div class="col-sm-12" style="padding-top: 15px; padding-bottom: 15px; ">
+            <h2>Meus Anúncios</h2>
         </div>
+        @foreach (var item in Model)
+            {
+            <div class="col-sm-3" style="margin-bottom: 40px;">
+                <article class="col-item">
+                    <div class="photo">
+                        @if (item.Imagem.ImageUrl != null)
+                        {
+                            <a><img style="height: 250px; padding: 15px;" src="@item.Imagem.ImageUrl" alt=@item.TituloAnuncio class="img-responsive" /></a>
+                        }
+                        else
+                        {
+                            <a><img style="height: 250px; padding: 15px;" class="img-responsive" src="@Url.Action("GetImage", "Anuncio", new { id = item.AnuncioID})" /></a>
+                        }
+                    </div>
+                    <div class="info">
+                        <div class="row">
+                            <div class="price-details col-md-12">
+                                <h1><b>@Html.DisplayFor(modelItem => item.TituloAnuncio)</b></h1><br /><br />
+                                <p class="details">
+                                    @Html.DisplayFor(modelItem => item.formataDescricao)...
+                                </p>
+                                <br />
+                                <span class="price-new">R$@Html.DisplayFor(modelItem => item.Valor)</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                @Html.ActionLink("Editar Anúncio", "Edit", "Anuncio", new { id = item.AnuncioID }, new { @class = "btn btn-primary" })
+            </div>
+        }
     </div>
 </div>
+
