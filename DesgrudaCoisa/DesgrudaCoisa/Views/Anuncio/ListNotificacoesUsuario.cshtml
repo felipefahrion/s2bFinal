@@ -1,6 +1,17 @@
 ﻿@{
     ViewBag.Title = "Notificações";
 }
+<style>
+    .star-rating {
+        line-height: 32px;
+        font-size: 1.25em;
+    }
+
+        .star-rating .fa-star {
+            color: yellow;
+        }
+</style>
+<link rel="stylesheet" type="text/css" href="~/SiteView/CSS/AvaliacaoAnuncio.css">
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -45,7 +56,18 @@
                                 <p>Por gentileza, avalie o Vendedor</p>
                             </td>
                             <td>
-                                @Html.ActionLink("Avaliar", "Edit", new { id = item.AnuncioID }, new { @class = "label label-warning" })
+                                @*@Html.ActionLink("Avaliar", "AvaliaProduto", new { id = item.AnuncioID }, new { @class = "label label-warning" })*@
+
+                                <div class="section" style="padding-bottom:20px;">
+                                    @Html.ActionLink("Avaliar", "AvaliarProduto",
+                                      new { id = @item.AnuncioID },
+                                      new
+                                      {
+                                          data_id = @item.AnuncioID,
+                                          @class = "AvaliarAnuncio label label-warning"
+                                      })
+                                </div>
+                                
                             </td>
                         </tr>
                     }
@@ -54,4 +76,94 @@
             }
         </div>
     </div>
+    <div hidden id="avaliar-dialog" title="Faça sua Avaliação">
+        <p>Deseja realmente responder este Anuncio?</p>
+        <div class="col-lg-12">
+            <div class="star-rating">
+                <span class="fa fa-star-o" data-rating="1"></span>
+                <span class="fa fa-star-o" data-rating="2"></span>
+                <span class="fa fa-star-o" data-rating="3"></span>
+                <span class="fa fa-star-o" data-rating="4"></span>
+                <span class="fa fa-star-o" data-rating="5"></span>
+                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+            </div>
+        </div>
+    </div>
 </div>
+@section scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script>
+        var deleteLinkObj;
+        var recordToDelete;
+        var respondeAnuncioId;
+        var descricacaoPergunta;
+        var idAnuncio
+        $(document).ready(function () {
+            $('.AvaliarAnuncio').click(function () {
+                deleteLinkObj = $(this);
+                recordToDelete = $(this).attr("data-id");
+                $('#avaliar-dialog').dialog('open');
+                return false;
+            })
+            
+            $('#stars').on('starrr:change', function (e, value) {
+                $('#count').html(value);
+            });
+
+            $('#stars-existing').on('starrr:change', function (e, value) {
+                $('#count-existing').html(value);
+            });
+        });
+        $('#avaliar-dialog').dialog({
+            autoOpen: false, width: 400, resizable: false,
+            modal: true, dialogClass: 'button',
+            buttons: {
+                "Confirmar": function () {
+                    $.post("/Anuncio/AvaliarAnuncio", { "id": recordToDelete, "countStar": $('.rating-value').val() })
+                        .done(function (data) {
+                            if (data.Message == undefined) {
+                                //Gambiarra, por falta de tempo :)
+                                alert("Você precisa logar para Comprar o Anúncio");
+                            } else {
+                                alert(data.Message);
+                            }
+                            deleteLinkObj.closest("tr").hide('fast');
+                        })
+                        .fail(function () {
+                            alert("Ocorreu um erro. Anúncio não comprado " + data.Message);
+                        });
+                    $(this).dialog("close");
+                    window.location.reload();
+                },
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        var $star_rating = $('.star-rating .fa');
+
+        var SetRatingStar = function () {
+            return $star_rating.each(function () {
+                if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+                    return $(this).removeClass('fa-star-o').addClass('fa-star');
+                } else {
+                    return $(this).removeClass('fa-star').addClass('fa-star-o');
+                }
+            });
+        };
+
+        $star_rating.on('click', function () {
+            $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+            return SetRatingStar();
+        });
+
+        SetRatingStar();
+        $(document).ready(function () {
+
+        });
+    </script>
+}

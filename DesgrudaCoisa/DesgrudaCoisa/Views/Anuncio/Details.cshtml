@@ -52,14 +52,19 @@
             }
             else if (Model.Status.Descricao == "Em negociacao")
             {
-                <div id="teste">
+                <div id="anuncio_negociacao">
                     <h4 style="margin-top:0px; padding-top:15px; color:red">Anúncio em Negociação</h4>
                 </div>
             }
             else if (Model.Status.Descricao == "Vendido")
             {
-                <div id="teste">
+                <div id="anuncio_vendido">
                     <h4 style="margin-top:0px; padding-top:15px; color:red">Anúncio está Vendido</h4>
+
+                    @if (Model.Avaliado == true)
+                    {
+                        <h4 style="margin-top:0px; padding-top:15px; color:yellow">O Anúncio foi avaliado em @Model.numeroEstrelas estrelas</h4>    
+                    }
                 </div>
             }
         </div>

@@ -41,6 +41,9 @@ namespace DesgrudaCoisa.Models
         [Display(Name = "Local de Anúncio")]
         public string Local { get; set; }
 
+        public bool Avaliado { get; set; }
+        public int numeroEstrelas { get; set; }
+
         public int CategoriaID { get; set; }
         public virtual Categoria Categoria { get; set; }
 
@@ -51,8 +54,5 @@ namespace DesgrudaCoisa.Models
         public virtual StatusAnuncio Status { get; set; }
         
         public ICollection<FAQ> Faq { get; set; }
-                
-        public ICollection<Avaliacao> Avaliacao { get; set; }
-
     }
 }

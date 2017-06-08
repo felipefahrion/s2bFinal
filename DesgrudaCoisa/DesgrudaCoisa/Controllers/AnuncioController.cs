@@ -47,6 +47,12 @@ namespace DesgrudaCoisa.Controllers
             {
                 ViewBag.faqs = listFaq;
             }
+                        
+            if (anuncio.numeroEstrelas >= 1)
+            {
+                ViewBag.numEstrela = anuncio.numeroEstrelas;
+            }
+
             if (Request.IsAuthenticated)
             {
                 string emailVend = User.Identity.GetUserName();
@@ -201,7 +207,8 @@ namespace DesgrudaCoisa.Controllers
             {
                 emailUsuarioLogado = User.Identity.GetUserName();
                 int numAnunciosNegociacao = db.Anuncios.Where(x => (x.Status.Descricao == "Em negociacao") && (x.VendedorEmail == emailUsuarioLogado)).Count();
-                ViewBag.NumAnunciosNegociacao = numAnunciosNegociacao;
+                int numAnunciosVendido = db.Anuncios.Where(x => (x.Status.Descricao == "Vendido") && (x.CompradorEmail == emailUsuarioLogado) && (x.Avaliado == false)).Count();
+                ViewBag.NumAnunciosNegociacao = numAnunciosNegociacao + numAnunciosVendido;
             }
             return this.PartialView();
         }
@@ -218,7 +225,7 @@ namespace DesgrudaCoisa.Controllers
                 ViewBag.Vendedor = anuncioListEmNegocio;
                 ViewBag.VendedorResult = anuncioListEmNegocio.ToList().Count();
                 //comprador deve avaliar os seus produtos comprados
-                IEnumerable<Anuncio> anuncioListVendido = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido") && (x.CompradorEmail == emailUsuarioLogado));
+                IEnumerable<Anuncio> anuncioListVendido = db.Anuncios.Include(a => a.Status).Where(x => (x.Status.Descricao == "Vendido") && (x.CompradorEmail == emailUsuarioLogado) && (x.Avaliado == false));
                 ViewBag.Comprador = anuncioListVendido;
                 ViewBag.CompradorResult = anuncioListVendido.ToList().Count();
             }
@@ -301,6 +308,16 @@ namespace DesgrudaCoisa.Controllers
             int IdVendido = status.StatusID;
             Anuncio anuncio = db.Anuncios.Find(id);
             anuncio.StatusID = IdVendido;
+            db.Entry(anuncio).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("ListNotificacoesUsuario");
+        }
+
+        public ActionResult AvaliarAnuncio(int id, int countStar)
+        {
+            Anuncio anuncio = db.Anuncios.Find(id);
+            anuncio.numeroEstrelas = countStar;
+            anuncio.Avaliado = true;
             db.Entry(anuncio).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("ListNotificacoesUsuario");
