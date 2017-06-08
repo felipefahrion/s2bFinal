@@ -61,20 +61,20 @@ namespace DesgrudaCoisa.Controllers
         // POST: Anuncio/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Anuncios.Add(anuncio);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "AnuncioID,TituloAnuncio,Valor,DataPublicacao,CategoriaID,Imagem")] Anuncio anuncio)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Anuncios.Add(anuncio);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
-            return View(anuncio);
-        }
+        //    ViewBag.CategoriaID = new SelectList(db.Categorias, "CategoriaID", "TituloCategoria", anuncio.CategoriaID);
+        //    return View(anuncio);
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -93,6 +93,7 @@ namespace DesgrudaCoisa.Controllers
                 ImagemID = imagem.ImagemID,
                 CategoriaID = categoriaID,
                 VendedorEmail = "admin@mvc.br",
+                DataPublicacao = DateTime.Now
             };
             if (ModelState.IsValid)
             {
