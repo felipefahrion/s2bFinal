@@ -2,33 +2,36 @@
 @{
     ViewBag.Title = "Filtrar pesquisa";
 }
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
 
-@using (Html.BeginForm("Filtro", "Anuncio", FormMethod.Post, null))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-
-        <h2>@ViewBag.Title</h2>
-        <div class="form-group">
-            <label class="col-md-4 control-label">Produto</label>
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.TituloAnuncio, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.TituloAnuncio, "", new { @class = "text-danger" })*@
-            </div>
+                    <h2>@ViewBag.Title</h2>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Produto</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.TituloAnuncio, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.ValidationMessageFor(model => model.TituloAnuncio, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Preço</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="PesquisarFiltro" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label">Preço</label>
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-10">
-                @*@Html.ActionLink("Pesquisar", "Pesquisar", "Anuncio", null, new { @class = "btn btn-success" })*@
-                <input type="submit" value="Pesquisar" class="btn btn-warning" />
-            </div>
-        </div>
-        
     </div>
-}
+</div>

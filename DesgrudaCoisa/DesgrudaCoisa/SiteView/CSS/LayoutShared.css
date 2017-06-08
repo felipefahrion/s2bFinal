@@ -1,0 +1,102 @@
+﻿.carousel-control.left, .carousel-control.right {
+    margin-left: 15px;
+    background-image: none;
+}
+
+.corBranca {
+    color: #FFFFFF !important;
+}
+
+.menu_topo {
+    background-color: #2874F0;
+    color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.link-menu {
+    background-color: #2874F0 !important;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+    .link-menu:hover {
+        background-color: #2874F0 !important;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+.pesquisa_topo {
+    background-color: #2874F0;
+    color: #FFFFFF;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #2874F0 !important;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+input, select, textarea {
+    max-width: 100%;
+}
+
+.botao {
+    border-radius: 0px;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #F1F1F1;
+    color: #000000;
+    width: 100%;
+}
+
+    .botao:hover {
+        border-radius: 0px;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #F1F1F1;
+        color: #000000;
+        width: 100%;
+    }
+
+.margin-top-15 {
+    margin-top: 15px;
+}

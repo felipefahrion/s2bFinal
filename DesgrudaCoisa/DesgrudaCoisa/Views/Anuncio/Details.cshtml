@@ -5,9 +5,11 @@
 }
 <link href="~/SiteView/CSS/DetalhesAnuncio.css" rel="stylesheet" type="text/css" />
 @*TODO: TEM UM JS PARA VINCULAR A ESSE HTML...*@
-<h2>Detalhes do Anúncio</h2>
 <div class="container">
     <div class="row">
+        <div class="col-xs-12">
+            <h2>Detalhes do Anúncio</h2>
+        </div>
         <div class="col-xs-4 item-photo">
             @if (@Model.Imagem.ImageUrl != null)
             {
@@ -100,7 +102,6 @@
             </div>*@
         <!-- Detalhes do Anúncio -->
     </div>
-</div>
     <div class="panel-body">
         <form role="form">
             <fieldset>
@@ -118,25 +119,25 @@
             </fieldset>
         </form>
     </div>
-@if (ViewBag.faqs != null)
-{
-    <div class="container-perg-resp">
-        <div class="questions-block">
-            <ul class="questions-list">
-                @foreach (var faq in ViewBag.faqs)
+    @if (ViewBag.faqs != null)
+    {
+        <div class="container-perg-resp">
+            <div class="questions-block">
+                <ul class="questions-list">
+                    @foreach (var faq in ViewBag.faqs)
                 {
                     var f = @faq.Pergunta;
-                    <li class="question-group-1 ">
-                        <article class="questions-list-question">
-                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                            <p><b>@faq.Pergunta</b></p>
-                            @if (@faq.Resposta != null)
-                            {
-                                <p>@faq.Resposta</p>
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Responder", "ResponderPergunta",
+                        <li class="question-group-1 ">
+                            <article class="questions-list-question">
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                <p><b>@faq.Pergunta</b></p>
+                                @if (@faq.Resposta != null)
+                                {
+                                    <p>@faq.Resposta</p>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Responder", "ResponderPergunta",
                                           new { id = @Model.AnuncioID },
                                           new
                                           {
@@ -144,20 +145,21 @@
                                               pergunta = @faq.Pergunta,
                                               @class = "ResponderAnuncio btn btn-default btn-sm"
                                           })
-                            }
-                        </article>
-                    </li>
-                }
-            </ul>
+                                }
+                            </article>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
+    }
+    <div hidden id="confirmar-dialog" title="Confirmação de compra">
+        <p>Deseja realmente comprar este Anuncio?</p>
     </div>
-}
-<div hidden id="confirmar-dialog" title="Confirmação de compra">
-    <p>Deseja realmente comprar este Anuncio?</p>
-</div>
-<div hidden id="responder-dialog" title="Faça sua pergunta">
-    <p>Deseja realmente responder este Anuncio?</p>
-    <textarea id='textArea' style=" padding-bottom: 20px;margin-top: 5px;" rows='5' cols='50'></textarea>
+    <div hidden id="responder-dialog" title="Faça sua pergunta">
+        <p>Deseja realmente responder este Anuncio?</p>
+        <textarea id='textArea' style=" padding-bottom: 20px;margin-top: 5px;" rows='5' cols='50'></textarea>
+    </div>
 </div>
 @*<p>
         @Html.ActionLink("Editar", "Edit", new { id = Model.AnuncioID }) |

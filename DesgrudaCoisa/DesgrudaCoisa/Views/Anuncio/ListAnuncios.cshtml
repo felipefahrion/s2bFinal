@@ -4,42 +4,49 @@
     ViewBag.Title = "Listagem de Anuncios";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Criar novo anúncio", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria.TituloCategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TituloAnuncio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th></th>
-    </tr>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria.TituloCategoria)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TituloAnuncio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valor)
+                    </th>
+                    <th></th>
+                </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.TituloCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TituloAnuncio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AnuncioID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AnuncioID })
-            </td>
-        </tr>
-    }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.TituloCategoria)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TituloAnuncio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.AnuncioID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.AnuncioID })
+                        </td>
+                    </tr>
+                }
 
-</table>
+            </table>
+
+        </div>
+    </div>
+</div>

@@ -15,8 +15,13 @@ namespace DesgrudaCoisa.Models
         [StringLength(60, MinimumLength = 3)]
         public string TituloAnuncio { get; set; }
 
+        public string formataDescricao { get { return Descricao.Substring(0, 20); } }
+
         [Display(Name = "Descrição")]
+        [DataType(DataType.MultilineText)]
+        [StringLength(1000, MinimumLength = 20)]
         public string Descricao { get; set; }
+
         [Display(Name = "Preço")]
         public decimal Valor { get; set; }
         [Required]
