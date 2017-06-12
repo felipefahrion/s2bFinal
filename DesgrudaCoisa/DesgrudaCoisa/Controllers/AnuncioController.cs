@@ -89,6 +89,7 @@ namespace DesgrudaCoisa.Controllers
                 ImagemID = imagem.ImagemID,
                 CategoriaID = categoriaID,
                 VendedorEmail = "admin@mvc.br",
+                Local = "Porto Alegre",
                 DataPublicacao = DateTime.Now
             };
             if (ModelState.IsValid)
